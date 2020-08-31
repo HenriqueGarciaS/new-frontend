@@ -1,0 +1,53 @@
+.SearchBar{
+    background: #78CEB4;
+    height: auto;
+    width: auto;
+}
+
+.categorias{
+    display:inline;
+}
+
+.categoria{
+    display:inline-block;
+    margin-left:5%;
+    margin-right:5%;
+
+}
+
+.Caption{
+    display: block;
+    text-align: center;
+}
+
+.imgCategoria{
+    background:darkgray;
+    border-radius:50%;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+}
+
+.SearchInput{
+    display: block;
+    align-content: center;
+}
+  
+#pesquisa{
+    display:inline-block;
+    width: 30%;
+    height: 25px;
+    text-align: center;
+    margin-left:33%;
+    padding-bottom: 4px;
+    border: 0.5px solid black;
+}
+
+#lupa{
+    border: 0.5px solid black;
+    height:30px;
+    width:30px;
+    background-color: white;
+    position:absolute;
+}
+

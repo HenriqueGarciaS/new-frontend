@@ -1,0 +1,93 @@
+.form-area{
+    display:block;
+    margin-top:5%;
+    margin-right:2%;
+    margin-left:2%;
+}
+
+.row{
+    display:block;
+    margin-left:5%;
+    margin-top:2.5%
+}
+
+p{
+    text-align: center;
+}
+
+.lblform{
+    margin-left:5px;
+    margin-right: 10px;
+    display:inline;
+    font-size:18px;
+}
+
+.text{
+    margin-right:5px;
+    height:25px;
+    width:500px;
+    font-size: 20px;
+}
+
+#estado{
+    margin-right:5px;
+    width: 550px;
+    height:30px;
+    font-size:18px;
+}
+
+#email{
+    width: 40%;
+    height: 25px;
+    font-size: 20px;
+}
+
+#senha{
+    width:500px;
+    height:25px;
+    font-size:20px;
+}
+
+#segundaSenha{
+  font-size:18px;
+  display:inline-block;
+  margin-top:20px;
+  margin-left:640px;
+  margin-right: 10px;
+}
+
+#confirmSenha{
+    width: 420px;
+    height:25px;
+    font-size:20px;
+}
+
+#imagem{
+    margin-left:5px;
+}
+
+#fotoUsuario{
+    border-radius:50%;
+    height: 75px;
+    width: 75px;
+}
+
+.btn-area{
+    display: block;
+    margin-top:50px;
+    margin-left:550px;
+}
+
+#cadastrar{
+    text-align: center;
+    height: 60px;
+    width: 300px;;
+    margin-right: 10px;
+    font-size:16px;
+    background:white;
+    padding:2px;
+}
+
+
+
+
