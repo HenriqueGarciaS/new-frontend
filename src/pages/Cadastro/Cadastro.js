@@ -63,6 +63,7 @@ export default class Cadastro extends Component{
                         <br/>
                         <div className = "photo-area">
                             <div className = "row">
+                            <label for = "imagem" id = "imagemUsuario">Foto de Perfil:</label>
                             <input type = "file" name="imagem" id="imagem" accept = "image/*"/>
                                 <img src = "" alt = "" id = 'fotoUsuario'></img>
                             </div>
@@ -77,10 +78,4 @@ export default class Cadastro extends Component{
             </div>
         </div>)
     }
-
-
-
-
-
-
 }
