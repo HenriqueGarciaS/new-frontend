@@ -1,26 +1,78 @@
 import React, {Component} from 'react';
 import Header from '../../components/Header/Header';
+import axios from 'axios';
 import './Cadastro.css'
 
 export default class Cadastro extends Component{
 
+    state = {
+        usuario:{
+            nome:"",
+            sobrenome:"",
+            estado:"",
+            cidade:"",
+            email:"",
+            senha:"",
+            confirmSenha:"",
+            foto:""
+        },
+        isEmpty:true,
+        passwordValid:false
+    }
+
+    save(event){
+        
+    }
+
+    updateField(event){
+        const usuario  = {...this.state.usuario};
+        let isEmpty = false;
+        let passwordValid = false;
+        usuario[event.target.name] = event.target.value;
+        if(usuario.nome === "" || usuario.sobrenome === "" || usuario.email === "" || usuario.estado === "" || usuario.cidade === "" || usuario.senha === "" || usuario.confirmSenha === "")
+        isEmpty = true;
+
+        if((usuario.senha == usuario.confirmSenha) && (usuario.senha != "" && usuario.confirmSenha != ""))
+        passwordValid = true;
+    
+        this.setState({usuario,isEmpty,passwordValid});
+    }
+
+    displayImg(event){
+        let img = document.getElementById("usuario");
+        img.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    fileSelect(event){
+        const usuario = {... this.state.usuario};
+        usuario[event.target.name] = event.target.files[0];
+        this.setState({usuario});
+        this.displayImg(event)
+    }
+
+
     render(){
         return (<div>
             <Header/>
-            <div className = "Cadastro">
-                <p>Criar uma Nova Conta</p>
+            <div className = "pagina-Cadastro">
+                <p>Criar uma nova conta</p>
                 <div className = "form-area">
-                    <form method = "POST">
-                        <div className = "row">
-                        <label for = "nome" className = "lblform">Nome:</label>
-                        <input type = "text" className = "text" name = "nome" id = "nome"/>
-                        <label for = "sobrenome" className = "lblform">Sobrenome:</label>
-                        <input type = "text" className = "text" name = "sobrenome" id = "sobrenome"/>
+                    <form method = "POST" onSubmit = {event => this.save(event)}>
+                    <div className = "row">
+                        <div className = "col">
+                            <label for = "nome" id = "lblNome" className = "labelForm">Nome:*</label>
+                            <input type = "text" id = "nome" name = "nome" className = "input" onChange = {event => this.updateField(event)}/>
                         </div>
-                        <br/>
-                        <div className = "row">
-                        <label for = "estado" className = "lblform">Estado</label>
-                        <select name = "estado" id = "estado">
+                        <div className = "col">
+                            <label for = "sobrenome" id ="lblSobrenome" className = "labelForm">Sobrenome:*</label>
+                            <input typee = "text" id = "sobrenome" name = "sobrenome" className = "input" onChange = {event => this.updateField(event)}/> 
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col">
+                        <label for = "estado" id = "lblEstado" className = "labelForm">Estado:*</label>
+                        <select name = "estado" id = "estado" className = "input" onChange = {event => this.updateField(event)}>
+                            <option disabled = "true" selected = "true">Escolha um estado</option>
                             <option value = "Acre">Acre</option>
                             <option value = "Alagoas">Alagoas</option>
                             <option value = "Amapá">Amapá</option>
@@ -47,32 +99,39 @@ export default class Cadastro extends Component{
                             <option value = "Sergipe">Sergipe</option>
                             <option value = "Tocantins">Tocantins</option>
                         </select>
-                        <label for = "cidade" className = 'lblform'>Cidade:</label>
-                        <input type = "text" name = "cidade" id = "cidade" className = "text"/>
                         </div>
-                        <br/>
-                        <div className = "row">
-                            <label for = "email" className = "lblform">E-mail:</label>
-                            <input type = "email" name = "email" id = "email"/>
-                            <label for = "senha" className = "lblform">Senha:</label>
-                            <input type = "password" id = "senha" name = "senha"/>
-                            <br/>
-                            <label for = "confirmSenha"  id = "segundaSenha">Confirmar Senha:</label>
-                            <input type = "password" id = "confirmSenha" name = "confirmSenha"/>
+                        <div className = "col">
+                            <label for = "cidade" id = "lblCidade" className = "labelForm">Cidade:*</label>
+                            <input type = "text" id = "cidade" name = "cidade" className = "input" onChange = {event => this.updateField(event)}/>
                         </div>
-                        <br/>
-                        <div className = "photo-area">
-                            <div className = "row">
-                            <label for = "imagem" id = "imagemUsuario">Foto de Perfil:</label>
-                            <input type = "file" name="imagem" id="imagem" accept = "image/*"/>
-                                <img src = "" alt = "" id = 'fotoUsuario'></img>
-                            </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col">
+                            <label for = "email" id = "lblemail" className = "labelForm">E-mail:*</label>
+                            <input type = "email" id = "email" name = "email" className = "input" onChange = {event => this.updateField(event)}/>
                         </div>
-                        <br/>
-                        <div className = "btn-area">
-                            <button onSubmit = "" id = "cadastrar">Cadastrar</button>
-                            <a href = "">Já tem conta?</a>
+                        <div className = "col">
+                            <label for = "senha" id = "lblsenha" className = "labelForm">Senha:*</label>
+                            <input type = "password" id = "senha" name = "senha" className ="input" onChange = {event => this.updateField(event)}/>
                         </div>
+                    </div>
+                    <div className = "row" id = "segundaSenha">
+                        <div className = "col">
+                            <label for = "confirmSenha" id = "lblconfirmSenha" className = "labelForm">Confirmar Senha:*</label>
+                            <input type = "password" id = "confirmSenha" name = "confirmSenha" className = "input" onChange = {event => this.updateField(event)}/>
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col">
+                            <label for = "foto" id = "fotoUsuario" className = "labelForm">Foto de Perfil:</label>
+                            <input type = "file" id = "foto" name = "foto" accept = "image/*" onChange = {event => this.fileSelect(event)}/>
+                            <img id = "usuario"/>
+                        </div>
+                    </div>
+                    <div className = "btn-area">
+                        <button type = "submit" id="btn" disabled = {this.state.isEmpty || !this.state.passwordValid}>Cadastrar</button>
+                        <a href = "http://localhost:3000/Entrar" id = "link">Já tem conta?</a>
+                    </div>
                     </form>
                 </div>
             </div>
