@@ -21,26 +21,51 @@ export default class Cadastro extends Component{
     }
 
     save(event){
-        
+        const data = new FormData();
+        data.append("file",this.state.usuario.foto);
+        data.append("nome",this.state.usuario.nome);
+        data.append("sobrenome",this.state.usuario.sobrenome);
+        data.append("estado",this.state.usuario.estado);
+        data.append("cidade",this.state.usuario.cidade);
+        data.append("email",this.state.usuario.email);
+        data.append("senha",this.state.usuario.senha);
+        axios.post().then(res =>{
+            window.location.href='http://localhost:3000/PaginaLogada';
+        });
+
     }
 
     updateField(event){
         const usuario  = {...this.state.usuario};
         let isEmpty = false;
-        let passwordValid = false;
         usuario[event.target.name] = event.target.value;
         if(usuario.nome === "" || usuario.sobrenome === "" || usuario.email === "" || usuario.estado === "" || usuario.cidade === "" || usuario.senha === "" || usuario.confirmSenha === "")
-        isEmpty = true;
+        isEmpty = true;    
+        this.setState({usuario,isEmpty});
+    }
 
-        if((usuario.senha == usuario.confirmSenha) && (usuario.senha != "" && usuario.confirmSenha != ""))
+    validatePassword(event){
+        const usuario = {...this.state.usuario};
+        let passwordValid = false;
+        usuario[event.target.name] = event.target.value
+        if((usuario.senha !== "" && usuario.confirmSenha !== "") && (usuario.senha === usuario.confirmSenha)){
+        document.getElementById("lblsenha").innerHTML = "Senha:*";
+        document.getElementById("lblsenha").style.color = "black";
         passwordValid = true;
-    
-        this.setState({usuario,isEmpty,passwordValid});
+        }
+        else{
+        document.getElementById("lblsenha").innerText = "Senha:* (As duas senhas não são iguais)"
+        document.getElementById("lblsenha").style.color = "red";
+        }
+        this.setState({usuario,passwordValid});
     }
 
     displayImg(event){
         let img = document.getElementById("usuario");
+        if(event.target.files.length != 0)
         img.src = URL.createObjectURL(event.target.files[0]);
+        else
+        img.src = "";
     }
 
     fileSelect(event){
@@ -112,13 +137,13 @@ export default class Cadastro extends Component{
                         </div>
                         <div className = "col">
                             <label for = "senha" id = "lblsenha" className = "labelForm">Senha:*</label>
-                            <input type = "password" id = "senha" name = "senha" className ="input" onChange = {event => this.updateField(event)}/>
+                            <input type = "password" id = "senha" name = "senha" className ="input" onChange = {event => this.validatePassword(event)}/>
                         </div>
                     </div>
                     <div className = "row" id = "segundaSenha">
                         <div className = "col">
                             <label for = "confirmSenha" id = "lblconfirmSenha" className = "labelForm">Confirmar Senha:*</label>
-                            <input type = "password" id = "confirmSenha" name = "confirmSenha" className = "input" onChange = {event => this.updateField(event)}/>
+                            <input type = "password" id = "confirmSenha" name = "confirmSenha" className = "input" onChange = {event => this.validatePassword(event)}/>
                         </div>
                     </div>
                     <div className = "row">

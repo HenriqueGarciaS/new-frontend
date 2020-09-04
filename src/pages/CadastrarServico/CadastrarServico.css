@@ -1,36 +1,29 @@
-#estado{
+#descricao{
+   width: 940px;
+   height: 150px;
+   resize:none;
+}
+
+#categoria{
     height:30px;
     width: 460px;
 }
 
-#segundaSenha{
-    display: block;
-    margin-left:785px;
-}
-
-#usuario{
+#anuncio{
     display:inline-block;
     margin-left:50px;
-    width: 60px;
-    height:60px;
-    background-color: white;
+    border:0px;
     border-color: white;
-    border-radius:50%
 }
 
-#btn{
-    height:75px;
-    width: 250px;
-    font-size:18px;
-    text-align: center;
-    font-weight:bold;
-    background-color: white;
-    padding:0.2 solid black;
+#valor{
+    width:65px;
 }
 
-#link{
-    margin-left:15px;
+#categoria{
+    width:370px;
 }
+
 
 .row{
     display:block;
@@ -60,6 +53,3 @@
     margin-top:50px;
     margin-left:600px;
 }
-
-
-
