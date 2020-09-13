@@ -6,6 +6,14 @@ import './Autenticacao.css';
 
 export default class Autenticacao extends Component{
 
+    state = {
+        login:{
+            email:"",
+            senha:"",
+        },
+        isEmpty:true
+    }
+
     render(){
         return(
            <div className = 'fundo'>
