@@ -44,8 +44,7 @@ export default class Cadastro extends Component{
         data.append("email",this.state.usuario.email);
         data.append("senha",this.state.usuario.senha);
         axios.post(baseUrl,data).then(res =>{
-            console.log(res.data.usuario.id);
-            window.localStorage.setItem("id_usuario",res.data.usuario.id);
+            window.localStorage.setItem("id_usuario",res.data.id);
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res => { 
             window.alert("Não foi possivel fazer o cadastro, por favor tente novamente");    

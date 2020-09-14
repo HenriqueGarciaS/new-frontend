@@ -27,12 +27,13 @@ export default class CadastrarServico extends Component{
         data.append("cidade",this.state.servico.cidade);
         data.append("descricao",this.state.servico.descricao);
         data.append("horarios",this.state.servico.horarios);
-        data.append("valor",parseInt(this.state.servico.valor));
+        data.append("valor",parseFloat(this.state.servico.valor));
         data.append("categoria",this.state.servico.categoria);
-        data.append("imagem",this.state.servico.foto)
+        data.append("file",this.state.servico.foto)
         axios.post("http://localhost:3001/fazeranuncio/"+window.localStorage.getItem("id_usuario"),data).then(res =>{
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res=>{
+            console.log(res);
             window.alert("Não foi possivel cadastar o serviço, por favor tente novamente");
         })
     }

@@ -27,7 +27,7 @@ export default class Autenticacao extends Component{
         data.append("email",this.state.login.email);
         data.append("senha",this.state.login.senha);
         axios.post(baseURL,this.state.login).then(res=>{
-            window.localStorage.setItem("id",res.data.id);
+            window.localStorage.setItem("id_usuario",res.data.id);
             window.location.href = 'http://localhost:3000/PaginaLogada';
         }).catch(res=>{
             let aviso = document.getElementById("aviso")
