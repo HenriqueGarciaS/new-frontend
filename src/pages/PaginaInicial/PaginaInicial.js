@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import {Link} from 'react-router-dom';
 import './PaginaInicial.css';
 import axios from 'axios';
 import Noimage from '../../images/No-image.jpg';
@@ -30,7 +31,8 @@ export default class PaginaInicial extends Component{
             alert("Não foi possivel regastar os anuncios");
         })
 
-}
+    }
+
 
 
     render(){
@@ -43,12 +45,17 @@ export default class PaginaInicial extends Component{
                 <div ClassName = "anuncioArea">
                 <p>Ultimos anuncios feitos</p>
                 {this.state.anuncios.map(anuncio =>{
+                    let src;
+                    if(anuncio.imagem === "")
+                    src = Noimage;
+                    else
+                    src = "http://localhost:3001/"+anuncio.imagem;
                         return (
                         <div className = "anuncio">
-                        <a href = "">
-                        <img src = {"http://localhost:3001/"+anuncio.imagem} className = "imagem" alt = {Noimage}/>
+                        <Link to = {"/Anuncio/"+anuncio.id}>
+                        <img src = {src} className = "imagem" alt = ""/>
                         <small className = "titulo">{anuncio.titulo}</small>
-                        </a>  
+                        </Link>  
                         </div>)
                     })}
                 </div>
