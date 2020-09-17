@@ -38,6 +38,7 @@ input[type = "radio"]{
     display: none;
 }
 .avaliacao{
+    background-color: gray;
     cursor: pointer;
     height: 60px;
     width: 60px;

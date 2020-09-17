@@ -32,7 +32,9 @@ export default class AnuncioDetalhe extends Component{
     avaliacao = (event) =>{
         let nota = event.target.value;
         for(let i = 1 ; i <= nota; i++)
-        document.getElementById(i).style.backgroundColor = "yellow"
+        document.getElementById(i).style.backgroundColor = "yellow";
+        for(let i = 5; i > nota; i--)
+        document.getElementById(i).style.backgroundColor = "gray";
         this.setState({avaliacao:nota});
     }
 
