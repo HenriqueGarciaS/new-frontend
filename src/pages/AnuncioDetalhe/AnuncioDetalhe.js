@@ -41,6 +41,8 @@ export default class AnuncioDetalhe extends Component{
     renderAvailiacao = () =>{
         return (<div className = "avaliacaoArea">
         <label>
+        <label className = "label" >Deixe sua avaliação</label>
+        <br/><br/>
         <input type = "radio" name = "escolha" value = "1" onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "1"/>
         </label>
@@ -94,8 +96,9 @@ export default class AnuncioDetalhe extends Component{
        return(
             <div>
             {this.chooseHeader()}
+            <div className = "pagina">
             <div className = "detalhes">
-                <p id = "titulo"> Detalhes deste Anuncio</p>
+                <p id = "titulo"> {this.state.Anuncio.titulo}</p>
                 <div className = "col">
                 <label  className = "label">Descrição:</label>
                 <p className = "detalheAnuncio">{this.state.Anuncio.descricao}</p>
@@ -120,6 +123,7 @@ export default class AnuncioDetalhe extends Component{
                     <img src = {this.getUsuario()} id = "usuario"/>
                     <small id = "nomeUsuario">{this.state.Anuncio.usuario}</small>
                 </div>
+            </div>
             </div>
             </div>
        );
