@@ -1,7 +1,8 @@
+import './Cadastro.css';
 import React, {Component} from 'react';
 import Header from '../../components/Header/Header';
 import axios from 'axios';
-import './Cadastro.css'
+
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -206,7 +207,7 @@ export default class Cadastro extends Component{
                         <div className = "col">
                             <label for = "foto" id = "fotoUsuario" className = "labelForm">Foto de Perfil:</label>
                             <input type = "file" id = "foto" name = "foto" accept = "image/*" onChange = {event => this.fileSelect(event)}/>
-                            <img id = "usuario"/>
+                            <img id = "fotoUsuario"/>
                         </div>
                     </div>
                     <div className = "btn-area">

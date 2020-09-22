@@ -3,7 +3,10 @@
     width: 460px;
 }
 
+.form-area{
+    display: inline;
 
+}
 
 #usuario{
     display:inline-block;

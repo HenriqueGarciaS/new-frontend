@@ -48,6 +48,10 @@ export default class Autenticacao extends Component{
         
     }
 
+    goToCadastrar = () =>{
+        window.location.href = 'http://localhost:3000/Cadastrar';
+    }
+
     render(){
         return(
            <div className = 'fundo'>
@@ -68,9 +72,9 @@ export default class Autenticacao extends Component{
                        <div className = "buttonArea">
                            <a href="" className = "senha">Esqueceu a sua senha?</a>
                            <br/>
-                           <button type = 'submit' className = "btn" disabled = { this.state.isEmpty}>Entrar</button>
+                           <button type = 'submit' className = "btnForm" disabled = {this.state.isEmpty}>Entrar</button>
                            <br/>
-                           <button className = "btn">Cadastrar</button>
+                           <button className = "btnForm" onClickCapture = {this.goToCadastrar}>Cadastrar</button>
                            <br/>
                        </div>
                    </form>

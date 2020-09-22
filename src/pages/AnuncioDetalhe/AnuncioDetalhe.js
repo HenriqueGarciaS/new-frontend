@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
+import './AnuncioDetalhe.css';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import Noimage from '../../images/No-image.jpg';
 import user from '../../images/No-user.png';
 import placeholder from '../../images/placeholder.png'
-import './AnuncioDetalhe.css'
 import axios from "axios";
 
 const baseUrl = "http://localhost:3001/anuncioDetalhes/"
@@ -30,19 +30,23 @@ export default class AnuncioDetalhe extends Component{
     }
 
     avaliacao = (event) =>{
+        if(!("id_usuario" in localStorage))
+        alert("Por favor faça login para avaliar");
+        else{
         let nota = event.target.value;
         for(let i = 1 ; i <= nota; i++)
         document.getElementById(i).style.backgroundColor = "yellow";
         for(let i = 5; i > nota; i--)
         document.getElementById(i).style.backgroundColor = "gray";
         this.setState({avaliacao:nota});
+        }
     }
 
     renderAvailiacao = () =>{
         return (<div className = "avaliacaoArea">
-        <label>
         <label className = "label" >Deixe sua avaliação</label>
         <br/><br/>
+        <label>
         <input type = "radio" name = "escolha" value = "1" onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "1"/>
         </label>
@@ -99,7 +103,7 @@ export default class AnuncioDetalhe extends Component{
             <div className = "pagina">
             <div className = "detalhes">
                 <p id = "titulo"> {this.state.Anuncio.titulo}</p>
-                <div className = "col">
+                <div className = "Col">
                 <label  className = "label">Descrição:</label>
                 <p className = "detalheAnuncio">{this.state.Anuncio.descricao}</p>
                 <label className = "label">Cidade:</label>
