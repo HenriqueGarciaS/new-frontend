@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './AnuncioDetalhe.css';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
@@ -115,8 +116,10 @@ export default class AnuncioDetalhe extends Component{
                 {this.renderAvailiacao()}    
                 </div>
             <div className = "btnArea">
-                <button className = "btn" id = "chat">Iniciar Chat</button>
-                <button className = "btn" id = "denuncia">Denunciar</button>
+                <button className = "btn" >Iniciar Chat</button>
+                <Link to = {"/Denunciar/"+this.state.Anuncio.id}>
+                <button className = "btn" >Denunciar</button>
+                </Link>
             </div>
             </div>
             <div className = "imageArea">

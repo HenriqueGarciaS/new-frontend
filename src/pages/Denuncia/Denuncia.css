@@ -1,0 +1,43 @@
+#descricao{
+   width: 940px;
+   height: 150px;
+   resize:none;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+#denuncia{
+    display:inline-block;
+    margin-left:50px;
+    height:150px;
+    width: 250px;
+    border-color: white;
+}
+
+.row{
+    display:block;
+    margin-left:300px;
+    margin-bottom: 25px;
+}
+
+.col{
+    display: inline-block;
+    margin-right: 25px;
+    
+}
+
+.labelForm{
+    display: block;
+    font-size:18px;
+}
+
+.input{
+    height:22px;
+    width: 450px;
+    font-size:20px;
+}
+
+.btn-area{
+    display:block;
+    margin-top:50px;
+    margin-left:600px;
+}

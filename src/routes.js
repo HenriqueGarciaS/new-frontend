@@ -6,6 +6,7 @@ import Autenticacao from './pages/Autenticacao/Autenticacao';
 import Cadastro from './pages/Cadastro/Cadastro';
 import CadastrarServico from './pages/CadastrarServico/CadastrarServico';
 import AnuncioDetalhe from './pages/AnuncioDetalhe/AnuncioDetalhe';
+import Denuncia from './pages/Denuncia/Denuncia';
 
 export default class Routes extends Component{
     render(){
@@ -17,6 +18,7 @@ export default class Routes extends Component{
       <Route path = "/Cadastrar" component = {Cadastro}/>
       <Route path = "/CadastrarServico" component = {CadastrarServico}/>
       <Route path = "/Anuncio/:id_anuncio" component = {AnuncioDetalhe} />
+      <Route path = "/Denunciar/:id_anuncio" component = {Denuncia} />
     </Switch>
     </BrowserRouter>
     )
