@@ -46,6 +46,8 @@ export default class Cadastro extends Component{
         data.append("senha",this.state.usuario.senha);
         axios.post(baseUrl,data).then(res =>{
             window.localStorage.setItem("id_usuario",res.data.id);
+            window.localStorage.setItem("foto_usuario",res.data.foto);
+            window.localStorage.setItem("nome_usuario",res.data.nome);
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res => { 
             window.alert("Não foi possivel fazer o cadastro, por favor tente novamente");    
@@ -59,7 +61,6 @@ export default class Cadastro extends Component{
         usuario[event.target.name] = event.target.value;
         if(usuario.nome === "" || usuario.sobrenome === ""  || usuario.estado === "" || usuario.cidade === "")
         isEmpty = true;
-        console.log(this.state);
         this.setState({usuario,isEmpty});
     }
 
@@ -114,7 +115,7 @@ export default class Cadastro extends Component{
     }
 
     displayImg(event){
-        let img = document.getElementById("usuario");
+        let img = document.getElementById("fotoUsuarioForm");
         if(event.target.files.length !== 0)
         img.src = URL.createObjectURL(event.target.files[0]);
         else
@@ -205,9 +206,9 @@ export default class Cadastro extends Component{
                     </div>
                     <div className = "row">
                         <div className = "col">
-                            <label for = "foto" id = "fotoUsuario" className = "labelForm">Foto de Perfil:</label>
+                            <label for = "foto" id = "labelFotoUsuario" className = "labelForm">Foto de Perfil:</label>
                             <input type = "file" id = "foto" name = "foto" accept = "image/*" onChange = {event => this.fileSelect(event)}/>
-                            <img id = "fotoUsuario"/>
+                            <img id = "fotoUsuarioForm"/>
                         </div>
                     </div>
                     <div className = "btn-area">

@@ -14,10 +14,8 @@ export default class HeaderServico extends Component{
         return (
             <div className = "HeaderServico">
                 <img src = {logo} alt = ""/>
-                <div className = "area-Usuario">
                 <button id = "voltar" onClickCapture = {this.goBack}>Voltar</button>
-                <img src = "" id = "fotoUsuario" alt = ""/>
-                </div>
+                <img src = {"http://localhost:3001/"+localStorage.getItem("foto_usuario")} id = "foto-Usuario" alt = ""/>
             </div>
         )
     }

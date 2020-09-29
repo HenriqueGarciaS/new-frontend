@@ -128,7 +128,7 @@ export default class AnuncioDetalhe extends Component{
                 </div>
                 <div className = "imageUsuario">
                     <img src = {this.getUsuario()} id = "usuario"/>
-                    <small id = "nomeUsuario">{this.state.Anuncio.usuario}</small>
+                    <small id = "nomeDoUsuario">{this.state.Anuncio.usuario}</small>
                 </div>
             </div>
             </div>

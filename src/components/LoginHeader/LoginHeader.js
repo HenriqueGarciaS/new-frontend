@@ -25,12 +25,16 @@ export default class LoginHeader extends Component{
         window.location.href = "http://localhost:3000/CadastrarServico"
     }
 
+    goToUserPage = () =>{
+        window.location.href = "http://localhost:3000/PaginaUsuario";
+    }
+
     render(){
         return (
             <div className = "navbar">
                 <img src = {logo} alt = ""/>
                 <button id = "anunciar" onClickCapture = {this.gotoServico}>Anunciar</button>
-                <img src = {img} id = "placeholder" alt = ""/>
+                <img src = {img} id = "placeholder" alt = "" onClickCapture = {this.goToUserPage}/>
                 
             </div>
         )

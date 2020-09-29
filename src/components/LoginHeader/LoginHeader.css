@@ -19,6 +19,7 @@
 }
 
 #usuario{
+    cursor: pointer;
     border-radius: 50px;
     background-color: black; 
     position: position absolute;
@@ -27,6 +28,7 @@
 }
 
 #placeholder{
+    cursor: pointer;
     border-radius:50px;
     position:absolute;
     top: 1%;

@@ -13,6 +13,11 @@
     border-color: white;
 }
 
+#btn{
+    cursor: pointer;
+
+}
+
 .row{
     display:block;
     margin-left:300px;
@@ -41,3 +46,4 @@
     margin-top:50px;
     margin-left:600px;
 }
+
