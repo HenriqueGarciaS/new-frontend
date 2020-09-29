@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import './UserForm.css';
 import Axios from 'axios';
 
 const emailRegex = RegExp(
@@ -122,7 +123,7 @@ export default class UserForm extends Component{
 
     render(){
         return (<div className = "formArea">
-        <p>Editar dados cadastrais</p>
+        <p className = "titulo">Editar dados cadastrais</p>
             <form method = "POST" onSubmit = {event => this.save(event)}>
                 <div className = "row">
                     <div className = "col">

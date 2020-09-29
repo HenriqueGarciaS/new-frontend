@@ -16,7 +16,7 @@ export default class AnuncioDetalhe extends Component{
     state = {
         Anuncio:{},
         fotoUsuario:"",
-        avaliacao:""
+        avaliacao:"",
     }
     
 
@@ -97,13 +97,24 @@ export default class AnuncioDetalhe extends Component{
         return 'http://localhost:3001/'+this.state.fotoUsuario;
     }
 
+    goToDenunciar = () =>{
+        window.location.href = "http://localhost:3000/Denunciar/"+this.state.Anuncio.id;
+    }
+
+    canDenunciar = () =>{
+        if(this.state.Anuncio.id_usuario == localStorage.getItem("id_usuario"))
+        return true;
+        else
+        return false;
+    }
+
     render(){
        return(
             <div>
             {this.chooseHeader()}
             <div className = "pagina">
             <div className = "detalhes">
-                <p id = "titulo"> {this.state.Anuncio.titulo}</p>
+                <p id = "tituloAnuncio"> {this.state.Anuncio.titulo}</p>
                 <div className = "Col">
                 <label  className = "label">Descrição:</label>
                 <p className = "detalheAnuncio">{this.state.Anuncio.descricao}</p>
@@ -117,9 +128,7 @@ export default class AnuncioDetalhe extends Component{
                 </div>
             <div className = "btnArea">
                 <button className = "btn" >Iniciar Chat</button>
-                <Link to = {"/Denunciar/"+this.state.Anuncio.id}>
-                <button className = "btn" >Denunciar</button>
-                </Link>
+                <button className = "btn" onClickCapture = {this.goToDenunciar}  disabled = {this.canDenunciar()}>Denunciar</button>
             </div>
             </div>
             <div className = "imageArea">

@@ -60,6 +60,7 @@ export default class Denuncia extends Component{
         event.preventDefault();
         let Denuncia = {
             id_contrante : window.localStorage.getItem("id_usuario"),
+            id_prestador : this.state.Anuncio.id_usuario,
             descricao : this.state.Descricao
         };
         Axios.post(url,Denuncia).then(res =>{

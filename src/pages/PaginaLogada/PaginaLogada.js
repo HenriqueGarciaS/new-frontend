@@ -52,7 +52,7 @@ export default class PaginaLogada extends Component{
                         <div className = "anuncio">
                         <Link to = {"/Anuncio/"+anuncio.id}>
                         <img src = {src} className = "imagem" alt = ""/>
-                        <small className = "titulo">{anuncio.titulo}</small>
+                        <small className = "tituloDoAnuncio">{anuncio.titulo}</small>
                         </Link>  
                         </div>)
                     })}
