@@ -43,7 +43,7 @@ export default class PaginaUsuario extends Component{
                 </div>
                 <div id = "linkArea">
                     <button className = "btnComponent" value = "0" onClick = {e => this.chooseForm(e)}>Editar Dados Cadastrais</button>
-                    <button className = "btnComponent" value = "1" onClick = {e => this.chooseForm(e)}>Editar Anuncios</button>
+                    <button className = "btnComponent" value = "1" onClick = {e => this.chooseForm(e)}>Editar seus Anuncios</button>
                     <button className = "btnComponent" value = "2" onClick = {e => this.chooseForm(e)}>Ver denuncias feitas sobre seus anuncios</button>
                     <button className = "btnComponent" value = "3" onClick = {e => this.chooseForm(e)}>Ver suas denuncias</button>
                 </div>

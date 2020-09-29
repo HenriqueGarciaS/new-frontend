@@ -1,0 +1,56 @@
+#tituloDosAnuncios{
+    font-size: 26px;
+   text-align: center;
+}
+
+.Titulo{
+    font-size:26px;
+    text-align: center;
+}
+
+.noAnuncioAreaUser{
+    display: inline-block;
+    margin-left:25%;
+}
+
+.anuncioAreaUser{
+    position: absolute;
+    display: inline-block;
+    margin-left: 25%;
+}
+
+.anuncioUser{
+    display: inline-block;
+    margin-top: 15px;
+    margin-left:75px;
+    margin-right:25px;
+    margin-bottom: 10px;
+    background-color: whitesmoke;
+    border:1px solid black;
+}
+
+.imagemAnuncio{
+    height: 150px;
+    width: 250px;
+    align-content: center;
+}
+
+#mensagem{
+    font-weight: bold;
+    margin-top: 25%;
+    margin-left:25%;
+}
+
+#goToAnunciar{
+    cursor: pointer;
+    font-size:16px;
+    background:white;
+    padding:2px;
+    display:block;
+    margin-top:50px;
+    margin-left:45%;
+    margin-right: auto;
+    text-align: center;
+    height: 60px;
+    width: 300px;;
+}
