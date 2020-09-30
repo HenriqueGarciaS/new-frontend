@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import UserForm from '../../components/UserForm/UserForm';
 import AnunciosArea from '../../components/AnuncioArea/AnuncioArea';
+import DenunciasArea from '../../components/DenunciaArea/DenunciaArea';
 import './PaginaUsuario.css'
 
 export default class PaginaUsuario extends Component{
@@ -20,6 +21,12 @@ export default class PaginaUsuario extends Component{
                 return <UserForm/>
             case 1:
                 return <AnunciosArea/>
+            case 2:
+                break;
+            case 3:
+                return <DenunciasArea/>
+            case 4:
+                break;
         }
     }
 

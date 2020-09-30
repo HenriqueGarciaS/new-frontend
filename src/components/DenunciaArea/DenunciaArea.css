@@ -1,0 +1,42 @@
+#tituloDaDenuncias{
+    font-size: 26px;
+   text-align: center;
+}
+
+.Titulo{
+    font-size:26px;
+    text-align: center;
+}
+
+.noDenunciaAreaUser{
+    display: inline-block;
+    margin-left:25%;
+}
+
+.denunciaAreaUser{
+    position: absolute;
+    display: inline-block;
+    margin-left: 25%;
+}
+
+.denunciaUser{
+    display: inline-block;
+    margin-top: 15px;
+    margin-left:75px;
+    margin-right:25px;
+    margin-bottom: 10px;
+    background-color: whitesmoke;
+    border:1px solid black;
+}
+
+.imagemDenuncia{
+    height: 150px;
+    width: 250px;
+    align-content: center;
+}
+
+#mensagem{
+    font-weight: bold;
+    margin-top: 25%;
+    margin-left:25%;
+}
