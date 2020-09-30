@@ -8,6 +8,7 @@ import CadastrarServico from './pages/CadastrarServico/CadastrarServico';
 import AnuncioDetalhe from './pages/AnuncioDetalhe/AnuncioDetalhe';
 import Denuncia from './pages/Denuncia/Denuncia';
 import PaginaUsuario from './pages/PaginaUsuario/PaginaUsuario';
+import AlterarAnuncio from './pages/AlterarAnuncio/AlterarAnuncio';
 
 export default class Routes extends Component{
     render(){
@@ -21,6 +22,7 @@ export default class Routes extends Component{
       <Route path = "/Anuncio/:id_anuncio" component = {AnuncioDetalhe} />
       <Route path = "/Denunciar/:id_anuncio" component = {Denuncia} />
       <Route path = "/PaginaUsuario" component = {PaginaUsuario} />
+      <Route path = "/AlterarAnuncio/:id_anuncio" component = {AlterarAnuncio} />
     </Switch>
     </BrowserRouter>
     )

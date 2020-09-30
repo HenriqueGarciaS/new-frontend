@@ -37,7 +37,7 @@ export default class AnuncioArea extends Component{
                 src = "http://localhost:3001/"+anuncio.imagem;
                 return (
                     <div className = "anuncioUser">
-                        <Link to = "">
+                        <Link to = {"/AlterarAnuncio/"+anuncio.id}>
                             <img src = {src} className = "imagemAnuncio" alt = ""/>
                             <small className = "tituloDoAnuncio">{anuncio.titulo} </small>
                         </Link>
