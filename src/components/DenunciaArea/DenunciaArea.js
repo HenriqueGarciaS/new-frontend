@@ -5,7 +5,7 @@ import Noimage from '../../images/No-image.jpg';
 import {Link} from 'react-router-dom';
 
 
-const denunciaURL = "http://localhost:3001/denuncia";
+const denunciaURL = "http://localhost:3001/denuncia/";
 
 export default class DenunciaArea extends Component{
     
@@ -34,7 +34,7 @@ export default class DenunciaArea extends Component{
                <div className = "denunciaUser">
                    <Link to = "">
                        <img src = {src} className = "imagemDenuncia" alt = ""/>
-                       <small className = "tituloDenuncia">{denuncias.descricao}</small>
+                       <small className = "tituloDaDenuncia">{denuncias.descricao}</small>
                    </Link>
                </div>
            )

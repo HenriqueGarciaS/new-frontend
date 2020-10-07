@@ -2,14 +2,12 @@ import React,{Component} from 'react';
 import UserForm from '../../components/UserForm/UserForm';
 import AnunciosArea from '../../components/AnuncioArea/AnuncioArea';
 import DenunciasArea from '../../components/DenunciaArea/DenunciaArea';
+import DenunciaAreaPrestador from '../../components/DenunciaAreaPrestador/DenunciaAreaPrestador';
 import './PaginaUsuario.css'
 
 export default class PaginaUsuario extends Component{
 
     state = {
-        anuncios:{},
-        denunciasUsuario:{},
-        denunciasAnuncios:{},
         formChoosed: 0,
     }
 
@@ -22,11 +20,18 @@ export default class PaginaUsuario extends Component{
             case 1:
                 return <AnunciosArea/>
             case 2:
-                break;
+                return <DenunciaAreaPrestador/>
             case 3:
                 return <DenunciasArea/>
             case 4:
-                break;
+               return window.location.href = "http://localhost:3000";
+            case 5:{
+                localStorage.removeItem("id_usuario");
+                localStorage.removeItem("nome_usuario");
+                localStorage.removeItem("foto_usuario");
+                return window.location.href = "http://localhost:3000";
+            }
+            
         }
     }
 
@@ -53,6 +58,8 @@ export default class PaginaUsuario extends Component{
                     <button className = "btnComponent" value = "1" onClick = {e => this.chooseForm(e)}>Editar seus Anuncios</button>
                     <button className = "btnComponent" value = "2" onClick = {e => this.chooseForm(e)}>Ver denuncias feitas sobre seus anuncios</button>
                     <button className = "btnComponent" value = "3" onClick = {e => this.chooseForm(e)}>Ver suas denuncias</button>
+                    <button className = "btnComponent" value = "4" onClick = {e => this.chooseForm(e)}>Voltar a Pagina Inicial</button>
+                    <button className = "btnComponent" value = "5" onClick = {e => this.chooseForm(e)}>Sair da Plataforma</button>
                 </div>
             </div>
         )
