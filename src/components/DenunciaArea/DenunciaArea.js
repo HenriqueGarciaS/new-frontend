@@ -32,7 +32,7 @@ export default class DenunciaArea extends Component{
            src = "http://localhost:3001"+denuncias.imagem;
            return(
                <div className = "denunciaUser">
-                   <Link to = "">
+                   <Link to = {"/AlterarDenuncia/"+denuncias.id}>
                        <img src = {src} className = "imagemDenuncia" alt = ""/>
                        <small className = "tituloDaDenuncia">{denuncias.descricao}</small>
                    </Link>

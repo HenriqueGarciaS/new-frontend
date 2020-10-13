@@ -31,7 +31,7 @@ export default class DenunciaArea extends Component {
             src = "http://localhost:3001"+denuncias.imagem;
             return(
                 <div className = "denunciaUser">
-                    <Link to = "">
+                    <Link to = {"/VisualizarDenuncia/"+denuncias.id}>
                         <img src = {src} className = "imagemDenuncia" alt = ""/>
                         <small className = "tituloDaDenuncia">{denuncias.descricao}</small>
                     </Link>
@@ -53,14 +53,14 @@ export default class DenunciaArea extends Component {
         if(this.state.denuncias.length > 0)
         return(
             <div className = "denunciaAreaUser">
-                <p id = "tituloDaDenuncias">Suas Denuncias</p>
+                <p id = "tituloDaDenuncias">Denuncias dos seus anuncios</p>
                 {this.renderDenuncias()}
             </div>
         );
         else
         return(
             <div className = "noDenunciaAreaUser">
-                <p className = "Titulo">Suas Denuncias</p>
+                <p className = "Titulo">Denuncias dos seus anuncios</p>
                 {this.renderNoDenuncias()}
             </div>
         )
