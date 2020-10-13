@@ -7,7 +7,8 @@ export default class AlterarAnuncio extends Component{
 
     state = {
         anuncio:{},
-        isEmpty:true
+        newFoto:"",
+        isEmpty:false
     }
 
 
@@ -24,15 +25,15 @@ export default class AlterarAnuncio extends Component{
     save = (event) =>{
         event.preventDefault();
         const data = new FormData();
-        data.append("titulo",this.state.servico.nome);
-        data.append("cidade",this.state.servico.cidade);
-        data.append("descricao",this.state.servico.descricao);
-        data.append("horarios",this.state.servico.horarios);
-        data.append("valor",parseFloat(this.state.servico.valor));
-        data.append("categoria",this.state.servico.categoria);
-        data.append("file",this.state.servico.foto)
-        Axios.post(""+window.localStorage.getItem("id_usuario"),data).then(res =>{
-            window.location.href = "http://localhost:3000/PaginaLogada";
+        data.append("titulo",this.state.anuncio.titulo);
+        data.append("cidade",this.state.anuncio.cidade);
+        data.append("descricao",this.state.anuncio.descricao);
+        data.append("horarios",this.state.anuncio.horarios);
+        data.append("valor",parseFloat(this.state.anuncio.valor));
+        data.append("categoria",this.state.anuncio.categoria);
+        data.append("file",this.state.newFoto)
+        Axios.post("http://localhost:3001/updateAnuncio/"+this.state.anuncio.id,data).then(res =>{
+            window.location.href = "http://localhost:3000/PaginaUsuario";
         }).catch(res=>{
             console.log(res);
             window.alert("Não foi possivel cadastar o serviço, por favor tente novamente");
@@ -57,9 +58,8 @@ export default class AlterarAnuncio extends Component{
     }
 
     fileSelect(event){
-        const servico = {... this.state.servico};
-        servico[event.target.name] = event.target.files[0];
-        this.setState({servico});
+        let foto  = event.target.files[0];
+        this.setState({newFoto:foto});
         this.displayImg(event);
     }
 
@@ -73,7 +73,7 @@ export default class AlterarAnuncio extends Component{
                             <div className = "row">
                                 <div className = "col">
                                     <label for = "nome" id = "lblnome" className = "labelForm">Nome do serviço:*</label>
-                                    <input type = "text" id = "nome" name = "nome" className = "input" onChange = {e => this.updateField(e)} value = {this.state.anuncio.titulo} />
+                                    <input type = "text" id = "nome" name = "titulo" className = "input" onChange = {e => this.updateField(e)} value = {this.state.anuncio.titulo} />
                                 </div>
                                 <div className = "col">
                                     <label for = "cidade" id = "lblcidade" className = "labelForm">Cidade do serviço:*</label>

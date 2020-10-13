@@ -12,9 +12,10 @@ const emailRegex = RegExp(
 export default class UserForm extends Component{
     state = {
         usuario:{},
-        isEmpty:true,
-        telephoneValid:false,
-        emailValid:false,
+        newFoto:"",
+        isEmpty:false,
+        telephoneValid:true,
+        emailValid:true,
         passwordValid:false
     }
 
@@ -30,15 +31,18 @@ export default class UserForm extends Component{
     save(event){
         event.preventDefault();
         const data = new FormData();
-        data.append("file",this.state.usuario.foto);
+        data.append("file",this.state.newFoto);
         data.append("nome",this.state.usuario.nome);
         data.append("sobrenome",this.state.usuario.sobrenome);
         data.append("estado",this.state.usuario.estado);
-        data.append("telefone",this.state.usuario.fone)
+        data.append("telefone",this.state.usuario.telefone)
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
         data.append("senha",this.state.usuario.senha);
-        Axios.post("",data).then(res =>{
+        Axios.post("http://localhost:3001/updateUsuario/"+localStorage.getItem("id_usuario"),data).then(res =>{
+            window.location.reload();
+            localStorage.setItem("foto_usuario",res.data.foto);
+            localStorage.setItem("nome_usuario",res.data.nome);
         }).catch(res => { 
             window.alert("Não foi possivel fazer o cadastro, por favor tente novamente");    
         })
@@ -74,7 +78,7 @@ export default class UserForm extends Component{
         const usuario = {...this.state.usuario};
         let telephoneValid = true;
         usuario[event.target.name] = event.target.value;
-        if(usuario.fone === "" || !numeroRegex.test(usuario.fone)){
+        if(usuario.telefone === "" || !numeroRegex.test(usuario.telefone)){
             telephoneValid = false;
             document.getElementById('lbltelefone').innerHTML = "Telefone:* (Deve se seguir o exemplo (11)1111-1111)";
             document.getElementById('lbltelefone').style.color = "red";
@@ -113,9 +117,8 @@ export default class UserForm extends Component{
     }
 
     fileSelect(event){
-        const usuario = {... this.state.usuario};
-        usuario[event.target.name] = event.target.files[0];
-        this.setState({usuario});
+        let foto  = event.target.files[0];
+        this.setState({newFoto:foto});
         this.displayImg(event);
     }
 
@@ -179,7 +182,7 @@ export default class UserForm extends Component{
             </div>
             <div className = "col">
                 <label for = "fone" id = "lbltelefone" className = "labelForm">Telefone:*</label>
-                <input type = "text" id = "fone" name = "fone" className = "input" value = {this.state.usuario.telefone} onChange = {event => this.validatePhone(event)}/>
+                <input type = "text" id = "fone" name = "telefone" className = "input" value = {this.state.usuario.telefone} onChange = {event => this.validatePhone(event)}/>
             </div>
         </div>
         <div className = "row" id = "segundaSenha">
@@ -198,6 +201,9 @@ export default class UserForm extends Component{
                 <input type = "file" id = "foto" name = "foto" accept = "image/*" onChange = {event => this.fileSelect(event)}/>
                 <img id = "fotoUsuarioForm" src = {"http://localhost:3001/"+this.state.usuario.foto}/>
             </div>
+        </div>
+        <div className = "btn-area">
+                        <button type = "submit" id="btn" disabled = {this.state.isEmpty || !this.state.emailValid || !this.state.telephoneValid || !this.state.passwordValid}>Cadastrar</button>
         </div>
         </form>
         </div>);
