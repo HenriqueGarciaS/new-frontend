@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
-import io from "socket.io-client";
 import './Chat.css'
-
-const socket = io('http://localhost:3002');
+import socket from '../../socketConfig.js';
 
 export default class Chat extends Component {
 

@@ -5,8 +5,9 @@ import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import Noimage from '../../images/No-image.jpg';
 import user from '../../images/No-user.png';
-import placeholder from '../../images/placeholder.png'
+import placeholder from '../../images/placeholder.png';
 import axios from "axios";
+import socket from '../../socketConfig.js';
 
 const baseUrl = "http://localhost:3001/anuncioDetalhes/"
 
@@ -21,6 +22,7 @@ export default class AnuncioDetalhe extends Component{
     
 
     async componentDidMount(){
+        socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
         const {id_anuncio} = this.props.match.params;
         axios.get(baseUrl+id_anuncio).then(res => {
             this.setState({Anuncio: res.data});

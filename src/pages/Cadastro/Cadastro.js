@@ -2,7 +2,7 @@ import './Cadastro.css';
 import React, {Component} from 'react';
 import Header from '../../components/Header/Header';
 import axios from 'axios';
-
+import socket from '../../socketConfig.js';
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -48,6 +48,7 @@ export default class Cadastro extends Component{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
             window.localStorage.setItem("nome_usuario",res.data.nome);
+            socket.emit("usuarioConectado",res.data.nome);
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res => { 
             window.alert("Não foi possivel fazer o cadastro, por favor tente novamente");    

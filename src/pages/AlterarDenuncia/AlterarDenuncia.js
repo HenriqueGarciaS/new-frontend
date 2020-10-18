@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
+import socket from '../../socketConfig.js';
 import './AlterarDenuncia.css';
 
 
@@ -19,6 +20,7 @@ export default class AlterarDenuncia extends Component{
 
     componentDidMount(){
         this.loadState();
+        socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
     }
     
 

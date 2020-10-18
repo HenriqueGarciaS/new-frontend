@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
+import socket from '../../socketConfig.js';
 import './Denuncia.css';
 
 
@@ -21,6 +22,7 @@ export default class Denuncia extends Component{
     componentDidMount(){
         if(!("id_usuario" in localStorage))
         window.location.href = "http://localhost:3000/Entrar";
+        socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
         this.loadState();
     }
     

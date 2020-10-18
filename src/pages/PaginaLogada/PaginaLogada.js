@@ -4,6 +4,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Noimage from '../../images/No-image.jpg';
+import socket from '../../socketConfig.js';
 import './PaginaLogada.css';
 
 const urlAnuncios = 'http://localhost:3001/anuncios';
@@ -15,6 +16,7 @@ export default class PaginaLogada extends Component{
     }
 
     componentDidMount(){
+       socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
        this.getAnuncios();
     }
    
