@@ -16,19 +16,29 @@ export default class Chat extends Component {
         let mensagem = event.target.value;
         if(mensagem != "")
         this.setState({mensagem:mensagem,isEmpty:false});
+        console.log(this.state);
 
     }
 
     componentDidMount(){
+        this.entrarSala();
         this.mensagemRecebida();
-        this.ultimasMensagens();
     }
 
-    ultimasMensagens = () => {
-        socket.on('ultimasMensagens', mensagens =>{
+    entrarSala = () => {
+         const {nomeSala} = this.props.match.params;
+         socket.emit('entrarSala',nomeSala);
+         socket.on('mensagensAntigas',mensagens => {
+             console.log(mensagens);
+             this.carregarMensagens(mensagens);
+         })
+    }
+
+    /*ultimasMensagens = () => {
+        socket.on('mensagensAntigas', mensagens =>{
             this.carregarMensagens(mensagens);
         })
-    }
+    }*/
 
     carregarMensagens = (mensagens) => {
         this.setState({mensagens:mensagens});
@@ -52,9 +62,10 @@ export default class Chat extends Component {
     enviarMensagem = (event) =>{
         event.preventDefault();
         let envio = {
-            usuario: "teste",
+            usuario: localStorage.getItem("nome_usuario"),
             mensagem : this.state.mensagem
         };
+        document.getElementById("texto").value = "";
         this.renderMensagem(envio);
         socket.emit('sendMessage',envio);
     }

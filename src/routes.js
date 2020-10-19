@@ -28,7 +28,7 @@ export default class Routes extends Component{
       <Route path = "/AlterarAnuncio/:id_anuncio" component = {AlterarAnuncio} />
       <Route path = "/VisualizarDenuncia/:id_denuncia" component = {VisualizarDenuncia}/>
       <Route path = "/AlterarDenuncia/:id_denuncia" component = {AlterarDenuncia}/>
-      <Route path = "/Chat" component = {Chat} />
+      <Route path = "/Chat/:nomeSala" component = {Chat} />
     </Switch>
     </BrowserRouter>
     )

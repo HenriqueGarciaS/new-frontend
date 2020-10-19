@@ -103,6 +103,20 @@ export default class AnuncioDetalhe extends Component{
         window.location.href = "http://localhost:3000/Denunciar/"+this.state.Anuncio.id;
     }
 
+    goToChat = () =>{
+        let chat = {
+            id_prestador : this.state.Anuncio.id_usuario,
+            id_contrante : localStorage.getItem("id_usuario"),
+            mensagens:"",
+            nomeSala:this.state.Anuncio.titulo
+        }
+        console.log(chat);
+        axios.post("http://localhost:3001/gravarChat",chat).then(res =>{
+            console.log(res.data);
+            window.location.href = "http://localhost:3000/Chat/"+this.state.Anuncio.titulo;
+        })
+    }
+
     canDenunciar = () =>{
         if(this.state.Anuncio.id_usuario == localStorage.getItem("id_usuario"))
         return true;
@@ -129,7 +143,7 @@ export default class AnuncioDetalhe extends Component{
                 {this.renderAvailiacao()}    
                 </div>
             <div className = "btnArea">
-                <button className = "btn" >Iniciar Chat</button>
+                <button className = "btn" onClickCapture = {this.goToChat} >Iniciar Chat</button>
                 <button className = "btn" onClickCapture = {this.goToDenunciar}  disabled = {this.canDenunciar()}>Denunciar</button>
             </div>
             </div>
