@@ -24,10 +24,11 @@ export default class Autenticacao extends Component{
 
     save = (event) =>{
         event.preventDefault();
-        const data = new FormData()
-        data.append("email",this.state.login.email);
-        data.append("senha",this.state.login.senha);
-        axios.post(baseURL,this.state.login).then(res=>{
+        let login = {
+            email: this.state.login.email,
+            senha: this.hashPassWord(this.state.login.senha)
+        }
+        axios.post(baseURL,login).then(res=>{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
             window.localStorage.setItem("nome_usuario",res.data.nome);
@@ -54,6 +55,16 @@ export default class Autenticacao extends Component{
 
     goToCadastrar = () =>{
         window.location.href = 'http://localhost:3000/Cadastrar';
+    }
+
+    hashPassWord = (str) => {
+        let hash = 0;
+        for(let i = 0 ; i < str.length; i++){
+            let charCode = str.charCodeAt(i);
+            hash += charCode;
+        }
+
+        return hash*70;
     }
 
     render(){

@@ -43,7 +43,7 @@ export default class Cadastro extends Component{
         data.append("telefone",this.state.usuario.fone)
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
-        data.append("senha",this.state.usuario.senha);
+        data.append("senha",this.hashPassWord(this.state.usuario.senha));
         axios.post(baseUrl,data).then(res =>{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
@@ -128,6 +128,16 @@ export default class Cadastro extends Component{
         usuario[event.target.name] = event.target.files[0];
         this.setState({usuario});
         this.displayImg(event);
+    }
+
+    hashPassWord = (str) => {
+        let hash = 0;
+        for(let i = 0 ; i < str.length; i++){
+            let charCode = str.charCodeAt(i);
+            hash += charCode;
+        }
+
+        return hash*70;
     }
 
 
