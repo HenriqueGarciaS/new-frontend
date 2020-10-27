@@ -66,6 +66,7 @@ export default class Chat extends Component {
             mensagem : this.state.mensagem
         };
         document.getElementById("texto").value = "";
+        this.setState({mensagem:"",isEmpty:true});
         this.renderMensagem(envio);
         socket.emit('sendMessage',envio);
     }
