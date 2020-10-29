@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Axios from 'axios';
+import api from '../../services/api';
 import './AnuncioArea.css';
 import Noimage from '../../images/No-image.jpg';
 import {Link} from 'react-router-dom';
@@ -14,7 +14,7 @@ export default class AnuncioArea extends Component{
     }
 
      async componentDidMount(){
-         Axios.get(anuncioURL+localStorage.getItem("id_usuario")).then(res =>{
+        api.get("/anuncio/"+localStorage.getItem("id_usuario")).then(res =>{
              console.log(res.data)
              this.setState({anuncios:res.data});
          }).catch(error => {

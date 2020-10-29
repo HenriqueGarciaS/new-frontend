@@ -3,7 +3,7 @@ import '../LoginHeader/LoginHeader.css'
 import logo from '../../images/logo.png';
 import img from '../../images/placeholder.png';
 import user from '../../images/No-user.png';
-import axios from 'axios';
+import api from '../../services/api';
 
 
 const urlUsuario = 'http://localhost:3001/usuario/';
@@ -11,7 +11,7 @@ const urlUsuario = 'http://localhost:3001/usuario/';
 export default class LoginHeader extends Component{
 
     componentDidMount(){
-        axios.get(urlUsuario+window.localStorage.getItem("id_usuario")).then(res =>{
+        api.get("/usuario/"+window.localStorage.getItem("id_usuario")).then(res =>{
             let src = "http://localhost:3001/"+res.data.foto
             let foto = document.getElementById("placeholder");
             if(src !== "http://localhost:3001/")

@@ -4,7 +4,8 @@ import AnunciosArea from '../../components/AnuncioArea/AnuncioArea';
 import DenunciasArea from '../../components/DenunciaArea/DenunciaArea';
 import DenunciaAreaPrestador from '../../components/DenunciaAreaPrestador/DenunciaAreaPrestador';
 import ChatArea from '../../components/ChatArea/ChatArea';
-import './PaginaUsuario.css'
+import './PaginaUsuario.css';
+import user from '../../images/No-user.png';
 
 export default class PaginaUsuario extends Component{
 
@@ -50,10 +51,13 @@ export default class PaginaUsuario extends Component{
     }
 
     renderUserBar = () =>{
+        let src = "http://localhost:3001/"+localStorage.getItem("foto_usuario");
+        if(localStorage.getItem("foto_usuario") == "")
+        src = user;
         return(
             <div id = "UserBar">
                 <div id = "imageArea">
-                    <img id = "fotoUsuario" src = {"http://localhost:3001/"+localStorage.getItem("foto_usuario")} />
+                    <img id = "fotoUsuario" src = {src} />
                     <small id = "nomeUsuario">{localStorage.getItem("nome_usuario")}</small>
                 </div>
                 <div id = "linkArea">

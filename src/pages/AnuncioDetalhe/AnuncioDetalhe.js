@@ -6,7 +6,7 @@ import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import Noimage from '../../images/No-image.jpg';
 import user from '../../images/No-user.png';
 import placeholder from '../../images/placeholder.png';
-import Axios from "axios";
+import api from '../../services/api';
 import socket from '../../socketConfig.js';
 
 const baseUrl = "http://localhost:3001/anuncioDetalhes/"
@@ -24,9 +24,9 @@ export default class AnuncioDetalhe extends Component{
     async componentDidMount(){
         socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
         const {id_anuncio} = this.props.match.params;
-        Axios.get(baseUrl+id_anuncio).then(res => {
+        api.get("/anuncioDetalhes/"+id_anuncio).then(res => {
             this.setState({Anuncio: res.data});
-            Axios.get('http://localhost:3001/usuario/'+this.state.Anuncio.id_usuario).then(res => {
+            api.get('/usuario/'+this.state.Anuncio.id_usuario).then(res => {
                 this.setState({fotoUsuario:res.data.foto});
             })
         })
@@ -47,7 +47,7 @@ export default class AnuncioDetalhe extends Component{
             }
 
 
-        Axios.post('http://localhost:3001/updateAnuncio/novaClassificacao/'+this.state.Anuncio.id,data).then(res =>{
+        api.post('/updateAnuncio/novaClassificacao/'+this.state.Anuncio.id,data).then(res =>{
             console.log(res.data);
             alert("classicacao enviada com sucesso");
             window.location.reload();
@@ -125,7 +125,7 @@ export default class AnuncioDetalhe extends Component{
             nomeSala:this.state.Anuncio.titulo+"-"+localStorage.getItem("nome_usuario")
         }
         console.log(chat);
-        Axios.post("http://localhost:3001/gravarChat",chat).then(res =>{
+        api.post("/gravarChat",chat).then(res =>{
             console.log(res.data);
             window.location.href = "http://localhost:3000/Chat/"+chat.nomeSala;
         })

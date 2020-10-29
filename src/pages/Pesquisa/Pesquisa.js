@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Axios from 'axios';
+import api from '../../services/api';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import './Pesquisa.css';
@@ -30,7 +30,7 @@ export default class Pesquisa extends Component {
          if(filtro.categoria == null || filtro.categoria == " ")
          filtro.categoria = "";
 
-         Axios.post('http://localhost:3001/anuncioFiltro',filtro).then(res => {
+         api.post('/anuncioFiltro',filtro).then(res => {
              console.log(res.data);
              this.setState({anuncios:res.data});
          }).catch(error => {
@@ -59,7 +59,7 @@ export default class Pesquisa extends Component {
     }
 
     updateAnuncios =  async () => {
-        Axios.post('http://localhost:3001/anuncioFiltros',this.state.filtro).then(res =>{
+        api.post('/anuncioFiltros',this.state.filtro).then(res =>{
             this.setState({anuncios:res.data});
         }).catch(error => {
             console.log(error.data);
@@ -76,7 +76,7 @@ export default class Pesquisa extends Component {
         preco:0
         }
 
-        Axios.post('http://localhost:3001/anuncioFiltros',cleanFiltro).then(res => {
+        api.post('/anuncioFiltros',cleanFiltro).then(res => {
             this.setState({anuncios:res.data});
         }).catch(error => {
             console.log(error.data);

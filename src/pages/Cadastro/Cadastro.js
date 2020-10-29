@@ -1,7 +1,7 @@
 import './Cadastro.css';
 import React, {Component} from 'react';
 import Header from '../../components/Header/Header';
-import axios from 'axios';
+import api from '../../services/api';
 import socket from '../../socketConfig.js';
 
 const emailRegex = RegExp(
@@ -44,7 +44,7 @@ export default class Cadastro extends Component{
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
         data.append("senha",this.hashPassWord(this.state.usuario.senha));
-        axios.post(baseUrl,data).then(res =>{
+        api.post("/Usuario",data).then(res =>{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
             window.localStorage.setItem("nome_usuario",res.data.nome);

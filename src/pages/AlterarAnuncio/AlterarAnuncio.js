@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Axios from 'axios';
+import api from '../../services/api';
 import HeaderServico from '../../components/HeaderServico/HeaderServico';
 import Noimage from '../../images/No-image.jpg';
 import socket from '../../socketConfig.js';
@@ -17,7 +17,7 @@ export default class AlterarAnuncio extends Component{
     async componentDidMount(){
         let {id_anuncio} = this.props.match.params; 
         socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
-        Axios.get("http://localhost:3001/anuncioDetalhes/"+id_anuncio).then(res =>{
+        api.get("/anuncioDetalhes/"+id_anuncio).then(res =>{
             console.log(res.data);
             this.setState({anuncio:res.data})
         }).catch(error =>{
@@ -35,7 +35,7 @@ export default class AlterarAnuncio extends Component{
         data.append("valor",parseFloat(this.state.anuncio.valor));
         data.append("categoria",this.state.anuncio.categoria);
         data.append("file",this.state.newFoto)
-        Axios.post("http://localhost:3001/updateAnuncio/"+this.state.anuncio.id,data).then(res =>{
+        api.post("/updateAnuncio/"+this.state.anuncio.id,data).then(res =>{
             window.location.href = "http://localhost:3000/PaginaUsuario";
         }).catch(res=>{
             console.log(res);

@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import api from '../../services/api';
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import socket from '../../socketConfig.js';
@@ -26,9 +26,9 @@ export default class AlterarDenuncia extends Component{
 
     loadState = async () =>{
         const {id_denuncia} = this.props.match.params;
-        Axios.get("http://localhost:3001/verDenuncia/"+id_denuncia).then(res =>{
+        api.get("/verDenuncia/"+id_denuncia).then(res =>{
             this.setState({Denuncia:res.data});
-            Axios.get(baseUrl+res.data.id_anuncio).then(res =>{
+            api.get("/anuncioDetalhes/"+res.data.id_anuncio).then(res =>{
                 this.setState({Anuncio:res.data});
             }).catch(error =>{
                 alert("erro ao recuperar dados do anuncio");
@@ -63,8 +63,7 @@ export default class AlterarDenuncia extends Component{
     }
 
     save = (event) =>{
-        let url = "http://localhost:3001/updateDenuncia/"+this.state.Denuncia.id;
-        Axios.post(url,this.state.Denuncia).then(res =>{
+        api.post("/updateDenuncia/"+this.state.Denuncia.id,this.state.Denuncia).then(res =>{
             alert("dados Atualizados");
             window.location.reload();
         }).catch(error =>{

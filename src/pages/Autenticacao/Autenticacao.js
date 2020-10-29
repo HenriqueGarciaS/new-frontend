@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../../images/logo.png';
 import './Autenticacao.css';
-import axios from 'axios';
+import api from '../../services/api';
 import socket from '../../socketConfig.js';
 
 const emailRegex = RegExp(
@@ -28,7 +28,7 @@ export default class Autenticacao extends Component{
             email: this.state.login.email,
             senha: this.hashPassWord(this.state.login.senha)
         }
-        axios.post(baseURL,login).then(res=>{
+        api.post("/loginUsuario",login).then(res=>{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
             window.localStorage.setItem("nome_usuario",res.data.nome);

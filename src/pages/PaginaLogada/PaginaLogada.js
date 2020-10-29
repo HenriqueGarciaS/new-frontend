@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 import Noimage from '../../images/No-image.jpg';
 import socket from '../../socketConfig.js';
 import './PaginaLogada.css';
@@ -21,7 +21,7 @@ export default class PaginaLogada extends Component{
     }
    
     getAnuncios = async () => {
-            axios.get(urlAnuncios).then(res=>{
+            api.get("/anuncios").then(res=>{
              this.setState({anuncios:res.data});
              console.log(this.state);
             }).catch(res =>{

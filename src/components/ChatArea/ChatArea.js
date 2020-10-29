@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import noImage from '../../images/No-image.jpg';
-import Axios from 'axios';
+import api from '../../services/api';
 import './ChatArea.css';
 import {Link} from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default class ChatArea extends Component {
     }
 
     async componentDidMount(){
-        Axios.get("http://localhost:3001/todosChats/"+localStorage.getItem("id_usuario")).then(res => {
+        api.get("/todosChats/"+localStorage.getItem("id_usuario")).then(res => {
             this.setState({chats:res.data});
         }).catch(error => {
             console.log(error.data);

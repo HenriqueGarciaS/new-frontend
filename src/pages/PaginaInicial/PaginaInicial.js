@@ -3,7 +3,7 @@ import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import {Link} from 'react-router-dom';
 import './PaginaInicial.css';
-import axios from 'axios';
+import api from '../../services/api';
 import Noimage from '../../images/No-image.jpg';
 
 const urlAnuncios = 'http://localhost:3001/anuncios';
@@ -24,7 +24,7 @@ export default class PaginaInicial extends Component{
     }
 
     getAnuncios = async () => {
-        axios.get(urlAnuncios).then(res=>{
+        api.get("/anuncios").then(res=>{
          this.setState({anuncios:res.data});
          console.log(this.state);
         }).catch(res =>{

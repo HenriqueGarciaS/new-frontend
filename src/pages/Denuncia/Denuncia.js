@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import api from '../../services/api';
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import socket from '../../socketConfig.js';
@@ -29,7 +29,7 @@ export default class Denuncia extends Component{
 
     loadState = async () =>{
         const {id_anuncio} = this.props.match.params;
-        Axios.get(baseUrl+id_anuncio).then(res => {
+        api.get("/anuncioDetalhes"+id_anuncio).then(res => {
             console.log(res.data);
             this.setState({Anuncio: res.data});
         });
@@ -58,14 +58,13 @@ export default class Denuncia extends Component{
     }
 
     save = (event) =>{
-        let url = "http://localhost:3001/fazerDenuncia/"+this.state.Anuncio.id;
         event.preventDefault();
         let Denuncia = {
             id_contrante : window.localStorage.getItem("id_usuario"),
             id_prestador : this.state.Anuncio.id_usuario,
             descricao : this.state.Descricao
         };
-        Axios.post(url,Denuncia).then(res =>{
+        api.post("/fazerDenucnia"+this.state.Anuncio.id,Denuncia).then(res =>{
             window.location.href = "http://localhost:3000/"
         }).catch(error =>{
             alert("error");

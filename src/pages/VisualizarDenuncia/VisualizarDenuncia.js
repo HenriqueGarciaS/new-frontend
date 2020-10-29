@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import api from '../../services/api';
 import React, {Component} from 'react';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import './VisualizarDenuncia.css';
@@ -23,7 +23,7 @@ export default class VisualizarDenuncia extends Component{
 
     loadState = async () =>{
         const {id_denuncia} = this.props.match.params;
-        Axios.get("http://localhost:3001/verDenuncia/"+id_denuncia).then(res => {
+        api.get("/verDenuncia/"+id_denuncia).then(res => {
             console.log(res.data);
             this.setState({Denuncia: res.data});
         });

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HeaderServico from '../../components/HeaderServico/HeaderServico';
 import './CadastrarServico.css';
-import axios from 'axios';
+import api from '../../services/api';
 
 
 
@@ -30,7 +30,7 @@ export default class CadastrarServico extends Component{
         data.append("valor",parseFloat(this.state.servico.valor));
         data.append("categoria",this.state.servico.categoria);
         data.append("file",this.state.servico.foto)
-        axios.post("http://localhost:3001/fazeranuncio/"+window.localStorage.getItem("id_usuario"),data).then(res =>{
+        api.post("/fazeranuncio/"+window.localStorage.getItem("id_usuario"),data).then(res =>{
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res=>{
             console.log(res);

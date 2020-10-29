@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './UserForm.css';
-import Axios from 'axios';
+import api from '../../services/api';
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -21,7 +21,7 @@ export default class UserForm extends Component{
 
     async componentDidMount(){
         let id = localStorage.getItem("id_usuario")
-        Axios.get('http://localhost:3001/usuario/'+id).then(res =>{
+        api.get('/usuario/'+id).then(res =>{
          this.setState({usuario:res.data});}
         ).catch(error =>{
             alert("Erro ao recuperar dados do usuario");
@@ -39,7 +39,7 @@ export default class UserForm extends Component{
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
         data.append("senha",this.state.usuario.senha);
-        Axios.post("http://localhost:3001/updateUsuario/"+localStorage.getItem("id_usuario"),data).then(res =>{
+        api.post("/updateUsuario/"+localStorage.getItem("id_usuario"),data).then(res =>{
             window.location.reload();
             localStorage.setItem("foto_usuario",res.data.foto);
             localStorage.setItem("nome_usuario",res.data.nome);
