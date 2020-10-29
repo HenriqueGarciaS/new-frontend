@@ -1,0 +1,43 @@
+#FiltroBar{
+    position: absolute;
+    background-color: #78CEB4;
+    height:110%;
+    width: 20%; 
+}
+
+#pesquisaNome{
+    margin-left:2%;
+    width:180px;
+}
+
+input[type = "radio"]{
+    display: initial;
+}
+
+.pesquisaArea{
+    margin-left: 25%;
+}
+
+.colFiltro{
+margin-left: 10%;
+margin-top: 15px;
+}
+
+.btnFiltro{
+    cursor: pointer;
+    display:inline-block;
+    margin-top: 5%;
+    margin-left:15%;
+    height:60px;
+    width: 120px;
+    font-size:16px;
+    background:white;
+    padding:2px;
+}
+
+.nameFiltro{
+    text-align: left;
+    margin-left: 12%;
+    font-size: 18px;
+    
+}

@@ -12,6 +12,7 @@ import AlterarAnuncio from './pages/AlterarAnuncio/AlterarAnuncio';
 import VisualizarDenuncia from './pages/VisualizarDenuncia/VisualizarDenuncia';
 import AlterarDenuncia from './pages/AlterarDenuncia/AlterarDenuncia';
 import Chat from './pages/Chat/Chat';
+import Pesquisa from './pages/Pesquisa/Pesquisa';
 
 export default class Routes extends Component{
     render(){
@@ -29,6 +30,7 @@ export default class Routes extends Component{
       <Route path = "/VisualizarDenuncia/:id_denuncia" component = {VisualizarDenuncia}/>
       <Route path = "/AlterarDenuncia/:id_denuncia" component = {AlterarDenuncia}/>
       <Route path = "/Chat/:nomeSala" component = {Chat} />
+      <Route path = "/Pesquisa/:categoria?/:titulo?" component = {Pesquisa} />
     </Switch>
     </BrowserRouter>
     )

@@ -1,51 +1,62 @@
 import React, {Component} from 'react';
 import '../SearchBar/SearchBar.css';
+import {Link} from 'react-router-dom'
 import placeholder from '../../images/placeholder.png';
 
 
 export default class SearchBar extends Component{
 
+    state = {
+        titulo:""
+    }
 
+         getTitulo = (event) =>{
+             this.setState({titulo:event.target.value})
+         }
+
+         goToPesquisa = () =>{
+             window.location.href = "/Pesquisa/ /"+this.state.titulo;
+         }
 
         render(){
             return(
                 <div className = "SearchBar">
                     <div className = "SearchInput">
-                    <input type = "text" placeholder = "Estou procurando por..." id = "pesquisa"/>
-                    <img src = {placeholder}  id = "lupa" alt = ""/>
+                    <input type = "text" placeholder = "Estou procurando por..." id = "pesquisa" onChange = {e => this.getTitulo(e)}/>
+                    <img src = {placeholder}  id = "lupa" alt = "" onClickCapture = {this.goToPesquisa}/>
                     </div>
                     <br/><br/>
                     <div className = "CategoriasSection">
                      <ul className = "Categorias">
                          <li className = "categoria">
-                             <a href="">
+                           <Link to = '/Pesquisa/faxina'>
                            <img src = {placeholder} alt = "" className = "imgCategoria"/>
                            <small className = "Caption">Faxina</small>
-                           </a>
+                           </Link>
                          </li>
                          <li className = "categoria">
-                             <a href = "">
+                             <Link to = "/Pesquisa/Conserto">
                              <img src = {placeholder} alt = "" className = "imgCategoria"/>
                              <small className = "Caption">Conserto</small>
-                             </a>
+                             </Link>
                          </li>
                          <li className = "categoria">
-                             <a href = "">
+                             <Link to = '/Pesquisa/Encanador'>
                                  <img src = {placeholder} alt = "" className = "imgCategoria"/>
                                  <small className = "Caption">Encanador</small>
-                             </a>
+                             </Link>
                          </li>
                          <li className = "categoria">
-                             <a href = "">
+                             <Link to = "/Pesquisa/Pintura">
                                  <img src = {placeholder} alt = "" className = "imgCategoria"/>
                                  <small className = "Caption">Pintura</small>
-                             </a>
+                             </Link>
                          </li>
                          <li className = "categoria">
-                             <a href = "">
+                             <Link  to = "/Pesquisa/Professor">
                                  <img src = {placeholder} alt = "" className = "imgCategoria"/>
                                  <small className = "Caption">Professor</small>
-                             </a>
+                             </Link>
                          </li>
                          <li className = "categoria">
                              <a href = "">
