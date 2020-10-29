@@ -28,8 +28,22 @@ export default class AnuncioDetalhe extends Component{
             this.setState({Anuncio: res.data});
             api.get('/usuario/'+this.state.Anuncio.id_usuario).then(res => {
                 this.setState({fotoUsuario:res.data.foto});
+                this.newHistorico();
             })
         })
+    }
+
+    newHistorico = async () => {
+        console.log("enviando historico");
+        if(localStorage.getItem("id_usuario")){
+            let newHistorico = {categoria:this.state.Anuncio.categoria}
+            console.log(newHistorico.categoria);
+            api.post('/updateUsuario/newHistorico/'+localStorage.getItem("id_usuario"),newHistorico).then(res => {
+                console.log(res.data);
+            }).catch(error => {
+                console.log(error.data);
+            })
+        }
     }
 
     avaliacao = async (event) =>{
@@ -152,6 +166,8 @@ export default class AnuncioDetalhe extends Component{
                 <p className = "detalheAnuncio">{this.state.Anuncio.cidade}</p>
                 <label className = "label">Valor:</label>
                 <p className = "detalheAnuncio">{this.state.Anuncio.valor}</p>
+                <label className = "label">Horarios:</label>
+                <p className = "detalheAnuncio">{this.state.Anuncio.horarios}</p>
                 <label className = "label">Nota:</label>
                 <p className = "detalheAnuncio">{this.state.Anuncio.classificacao}</p>
                 {this.renderAvailiacao()}    
