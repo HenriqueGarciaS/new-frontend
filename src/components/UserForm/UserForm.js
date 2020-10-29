@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './UserForm.css';
+import user from '../../images/No-user.png';
 import api from '../../services/api';
 
 const emailRegex = RegExp(
@@ -125,6 +126,11 @@ export default class UserForm extends Component{
 
 
     render(){
+        let src
+        if(localStorage.getItem("foto_usuario") == "")
+        src = user;
+        else
+        src = 'http://localhost:3001/'+localStorage.getItem('foto_usuario'); 
         return (<div className = "formArea">
         <p className = "titulo">Editar dados cadastrais</p>
             <form method = "POST" onSubmit = {event => this.save(event)}>
@@ -199,7 +205,7 @@ export default class UserForm extends Component{
             <div className = "col">
                 <label for = "foto" id = "labelFoto" className = "labelForm">Foto de Perfil:</label>
                 <input type = "file" id = "foto" name = "foto" accept = "image/*" onChange = {event => this.fileSelect(event)}/>
-                <img id = "fotoUsuarioForm" src = {"http://localhost:3001/"+this.state.usuario.foto}/>
+                <img id = "fotoUsuarioForm" src = {src}/>
             </div>
         </div>
         <div className = "btn-area">
