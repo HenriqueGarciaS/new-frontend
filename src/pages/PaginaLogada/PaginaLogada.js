@@ -12,12 +12,14 @@ const urlAnuncios = 'http://localhost:3001/anuncios';
 export default class PaginaLogada extends Component{
 
     state = {
-        anuncios:[]
+        anuncios:[],
+        anunciosHistorico:[]
     }
 
     componentDidMount(){
        socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
        this.getAnuncios();
+       this.getAnunciosHistorico();
     }
    
     getAnuncios = async () => {
@@ -28,6 +30,14 @@ export default class PaginaLogada extends Component{
                 alert("Não foi possivel regastar os anuncios");
             })
 
+    }
+
+    getAnunciosHistorico = async () => {
+        api.get("/anunciosHistorico/"+localStorage.getItem("id_usuario")).then(res =>{
+            this.setState({anunciosHistorico:res.data});
+        }).catch(error => {
+            console.log(error.data);
+        })
     }
 
 
@@ -41,6 +51,20 @@ export default class PaginaLogada extends Component{
             <div className = 'anuncioArea'>
                 <div className = "historico">
                 <p>Anuncios Baseados no seu histórico de vizualização</p>
+                {this.state.anunciosHistorico.map(anuncio =>{
+                    let src;
+                    if(anuncio.imagem === "")
+                    src = Noimage;
+                    else
+                    src = "http://localhost:3001/"+anuncio.imagem;
+                        return (
+                        <div className = "anuncio">
+                        <Link to = {"/Anuncio/"+anuncio.id}>
+                        <img src = {src} className = "imagem" alt = ""/>
+                        <small className = "tituloDoAnuncio">{anuncio.titulo}</small>
+                        </Link>  
+                        </div>)
+                    })}
                 </div>
                 <div className = "pesquisaNormal">
                     <p>Ultimos Anuncios feitos</p>
