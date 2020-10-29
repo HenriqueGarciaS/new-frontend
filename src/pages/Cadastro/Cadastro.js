@@ -155,7 +155,7 @@ export default class Cadastro extends Component{
                         </div>
                         <div className = "col">
                             <label for = "sobrenome" id ="lblSobrenome" className = "labelForm">Sobrenome:*</label>
-                            <input typee = "text" id = "sobrenome" name = "sobrenome" className = "input" onChange = {event => this.updateField(event)}/> 
+                            <input type = "text" id = "sobrenome" name = "sobrenome" className = "input" onChange = {event => this.updateField(event)}/> 
                         </div>
                     </div>
                     <div className = "row">

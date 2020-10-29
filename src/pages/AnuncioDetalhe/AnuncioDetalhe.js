@@ -6,7 +6,7 @@ import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import Noimage from '../../images/No-image.jpg';
 import user from '../../images/No-user.png';
 import placeholder from '../../images/placeholder.png';
-import axios from "axios";
+import Axios from "axios";
 import socket from '../../socketConfig.js';
 
 const baseUrl = "http://localhost:3001/anuncioDetalhes/"
@@ -17,22 +17,22 @@ export default class AnuncioDetalhe extends Component{
     state = {
         Anuncio:{},
         fotoUsuario:"",
-        avaliacao:"",
+        classificacao:"",
     }
     
 
     async componentDidMount(){
         socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
         const {id_anuncio} = this.props.match.params;
-        axios.get(baseUrl+id_anuncio).then(res => {
+        Axios.get(baseUrl+id_anuncio).then(res => {
             this.setState({Anuncio: res.data});
-            axios.get('http://localhost:3001/usuario/'+this.state.Anuncio.id_usuario).then(res => {
+            Axios.get('http://localhost:3001/usuario/'+this.state.Anuncio.id_usuario).then(res => {
                 this.setState({fotoUsuario:res.data.foto});
             })
         })
     }
 
-    avaliacao = (event) =>{
+    avaliacao = async (event) =>{
         if(!("id_usuario" in localStorage))
         alert("Por favor faça login para avaliar");
         else{
@@ -41,7 +41,19 @@ export default class AnuncioDetalhe extends Component{
         document.getElementById(i).style.backgroundColor = "yellow";
         for(let i = 5; i > nota; i--)
         document.getElementById(i).style.backgroundColor = "gray";
-        this.setState({avaliacao:nota});
+
+            let data = {
+                nota:parseInt(nota)
+            }
+
+
+        Axios.post('http://localhost:3001/updateAnuncio/novaClassificacao/'+this.state.Anuncio.id,data).then(res =>{
+            console.log(res.data);
+            alert("classicacao enviada com sucesso");
+            window.location.reload();
+        }).catch(error => {
+            console.log(error.data);
+        })
         }
     }
 
@@ -50,23 +62,23 @@ export default class AnuncioDetalhe extends Component{
         <label className = "label" >Deixe sua avaliação</label>
         <br/><br/>
         <label>
-        <input type = "radio" name = "escolha" value = "1" onClick = {e => this.avaliacao(e)}/>
+        <input type = "radio" name = "escolha" value = "1" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "1"/>
         </label>
         <label>
-        <input type = "radio" name = "escolha" value = "2" onClick = {e => this.avaliacao(e)}/>
+        <input type = "radio" name = "escolha" value = "2" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "2"/>
         </label>
         <label>
-        <input type = "radio" name = "escolha" value = "3"  onClick = {e => this.avaliacao(e)}/>
+        <input type = "radio" name = "escolha" value = "3" className = "radio" style = {{display:"none"}}   onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "3"/>
         </label>
         <label>
-        <input type = "radio" name = "escolha" value = "4"  onClick = {e => this.avaliacao(e)}/>
+        <input type = "radio" name = "escolha" value = "4" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "4"/>
         </label>
         <label>
-        <input type = "radio" name = "escolha" value = "5"  onClick = {e => this.avaliacao(e)}/>
+        <input type = "radio" name = "escolha" value = "5" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
         <img src = {placeholder} className = "avaliacao" id = "5"/>
         </label>
                 </div>);
@@ -113,7 +125,7 @@ export default class AnuncioDetalhe extends Component{
             nomeSala:this.state.Anuncio.titulo+"-"+localStorage.getItem("nome_usuario")
         }
         console.log(chat);
-        axios.post("http://localhost:3001/gravarChat",chat).then(res =>{
+        Axios.post("http://localhost:3001/gravarChat",chat).then(res =>{
             console.log(res.data);
             window.location.href = "http://localhost:3000/Chat/"+chat.nomeSala;
         })
