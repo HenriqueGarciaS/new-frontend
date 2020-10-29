@@ -1,7 +1,7 @@
 #FiltroBar{
     position: absolute;
     background-color: #78CEB4;
-    height:110%;
+    height:115%;
     width: 20%; 
 }
 
@@ -26,11 +26,11 @@ margin-top: 15px;
 .btnFiltro{
     cursor: pointer;
     display:inline-block;
-    margin-top: 5%;
-    margin-left:15%;
-    height:60px;
+    margin-top: 8%;
+    margin-left:30%;
+    height:40px;
     width: 120px;
-    font-size:16px;
+    font-size:14px;
     background:white;
     padding:2px;
 }

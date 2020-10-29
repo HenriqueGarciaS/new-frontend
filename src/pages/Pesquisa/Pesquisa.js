@@ -115,6 +115,8 @@ export default class Pesquisa extends Component {
     renderFiltroBar = () => {
         return (
             <div id = "FiltroBar">
+                <button className = "btnFiltro" onClickCapture = {this.updateAnuncios}>Filtrar</button>
+                <button className = "btnFiltro" onClickCapture = {this.cleanUpdate}>Limpar Pesquisar</button>
                 <p>Filtros</p>
                 <div className = "rowFiltro">
                     <p className = "nameFiltro">Titulo do anuncio</p>
@@ -132,6 +134,10 @@ export default class Pesquisa extends Component {
                     <div className = "colFiltro">
                         <input type = "radio" value = "conserto"  id = "conserto"  name = "categoria" className = "check" onChange = {e => this.radioChoose(e)}/>
                         <label for = "conserto">Conserto</label>
+                    </div>
+                    <div className = "colFiltro">
+                        <input type = "radio" value = "professor" id = "professor"  name = "categoria" className = "check" onChange = {e => this.radioChoose(e)}/>
+                        <label for = "professor">Professor</label>
                     </div>
                     <div className = "colFiltro">
                         <input type = "radio" value = "encanador" id = "encanador"  name = "categoria" className = "check" onChange = {e => this.radioChoose(e)}/>
@@ -170,8 +176,7 @@ export default class Pesquisa extends Component {
                         <span id = "outPut">Preço do anuncio:R${this.state.filtro.preco}</span>
                     </div>
                 </div>
-                <button className = "btnFiltro" onClickCapture = {this.updateAnuncios}>Filtrar</button>
-                <button className = "btnFiltro" onClickCapture = {this.cleanUpdate}>Limpar Pesquisar</button>
+               
             </div>
         )
 
