@@ -17,6 +17,7 @@ export default class Autenticacao extends Component{
         login:{
             email:"",
             senha:"",
+            permaAuth:false
         },
         isEmpty:true
     }
@@ -32,6 +33,12 @@ export default class Autenticacao extends Component{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
             window.localStorage.setItem("nome_usuario",res.data.nome);
+
+            if(this.state.login.permaAuth != false)
+            window.localStorage.setItem('tokenAuth',res.data.tokenAuth);
+            else
+            window.sessionStorage.setItem("tokenAuth",res.data.tokenAuth);
+
             socket.emit("usuarioConectado",res.data.nome);
             window.location.href = 'http://localhost:3000/PaginaLogada';
         }).catch(res=>{
@@ -50,6 +57,7 @@ export default class Autenticacao extends Component{
         if(login.email === "" || login.senha == "")
         isEmpty = true;
         this.setState({login,isEmpty});
+        console.log(this.state);
         
     }
 
@@ -87,6 +95,8 @@ export default class Autenticacao extends Component{
                        <div className = "buttonArea">
                            <a href="" className = "senha">Esqueceu a sua senha?</a>
                            <br/>
+                           <input type = "checkbox" value = {true} name = 'permaAuth' className = "checkbox" onChange = {e =>this.updateField(e)}/>
+                           <label for = "permaAuth">Continuar Logado?</label>
                            <button type = 'submit' className = "btnForm" disabled = {this.state.isEmpty}>Entrar</button>
                            <br/>
                            <button className = "btnForm" onClickCapture = {this.goToCadastrar}>Cadastrar</button>

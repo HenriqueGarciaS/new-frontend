@@ -4,6 +4,7 @@ import AnunciosArea from '../../components/AnuncioArea/AnuncioArea';
 import DenunciasArea from '../../components/DenunciaArea/DenunciaArea';
 import DenunciaAreaPrestador from '../../components/DenunciaAreaPrestador/DenunciaAreaPrestador';
 import ChatArea from '../../components/ChatArea/ChatArea';
+import api from '../../services/api';
 import './PaginaUsuario.css';
 import user from '../../images/No-user.png';
 
@@ -30,10 +31,10 @@ export default class PaginaUsuario extends Component{
             case 5:
                return window.location.href = "http://localhost:3000";
             case 6:{
-                localStorage.removeItem("id_usuario");
-                localStorage.removeItem("nome_usuario");
-                localStorage.removeItem("foto_usuario");
-                return window.location.href = "http://localhost:3000";
+                api.get('/logout/'+localStorage.getItem('id_usuario'));
+                sessionStorage.clear();
+                window.localStorage.clear();
+                return window.location.href = "/";
             }
             
         }

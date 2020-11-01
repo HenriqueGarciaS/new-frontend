@@ -17,6 +17,11 @@ export default class PaginaLogada extends Component{
     }
 
     componentDidMount(){
+        if(!sessionStorage.getItem('tokenAuth') && !localStorage.getItem('tokenAuth')){
+            api.get('/logout/'+localStorage.getItem('id_usuario'));
+            window.localStorage.clear();
+            window.location.href = '/';
+        }
        socket.emit('usuarioConectado',localStorage.getItem('nome_usuario'));
        this.getAnuncios();
        this.getAnunciosHistorico();
