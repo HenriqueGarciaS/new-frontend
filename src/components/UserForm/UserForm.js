@@ -39,7 +39,11 @@ export default class UserForm extends Component{
         data.append("telefone",this.state.usuario.telefone)
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
-        data.append("senha",this.state.usuario.senha);
+        data.append("senha",this.hashPassWord(this.state.usuario.senha));
+        if(localStorage.getItem('tokenAuth'))
+        data.append("tokenAuth",localStorage.getItem('tokenAuth'))
+        else
+        data.append("tokenAuth",sessionStorage.getItem('tokenAuth'));
         api.post("/updateUsuario/"+localStorage.getItem("id_usuario"),data).then(res =>{
             window.location.reload();
             localStorage.setItem("foto_usuario",res.data.foto);
@@ -121,6 +125,16 @@ export default class UserForm extends Component{
         let foto  = event.target.files[0];
         this.setState({newFoto:foto});
         this.displayImg(event);
+    }
+
+    hashPassWord = (str) => {
+        let hash = 0;
+        for(let i = 0 ; i < str.length; i++){
+            let charCode = str.charCodeAt(i);
+            hash += charCode;
+        }
+
+        return hash*70;
     }
 
 

@@ -29,7 +29,11 @@ export default class CadastrarServico extends Component{
         data.append("horarios",this.state.servico.horarios);
         data.append("valor",parseFloat(this.state.servico.valor));
         data.append("categoria",this.state.servico.categoria);
-        data.append("file",this.state.servico.foto)
+        data.append("file",this.state.servico.foto);
+        if(localStorage.getItem('tokenAuth'))
+        data.append("tokenAuth",localStorage.getItem('tokenAuth'));
+        else
+        data.append("tokenAuth",sessionStorage.getItem('tokenAuth'));
         api.post("/fazeranuncio/"+window.localStorage.getItem("id_usuario"),data).then(res =>{
             window.location.href = "http://localhost:3000/PaginaLogada";
         }).catch(res=>{

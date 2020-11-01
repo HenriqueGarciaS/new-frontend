@@ -29,7 +29,7 @@ export default class Denuncia extends Component{
 
     loadState = async () =>{
         const {id_anuncio} = this.props.match.params;
-        api.get("/anuncioDetalhes"+id_anuncio).then(res => {
+        api.get("/anuncioDetalhes/"+id_anuncio).then(res => {
             console.log(res.data);
             this.setState({Anuncio: res.data});
         });
@@ -59,12 +59,21 @@ export default class Denuncia extends Component{
 
     save = (event) =>{
         event.preventDefault();
+        let tokenAuth;
+        if(localStorage.getItem('tokenAuth'))
+        tokenAuth = localStorage.getItem('tokenAuth');
+        else
+        tokenAuth = sessionStorage.getItem('tokenAuth');
+        console.log(tokenAuth);
+        let id_usuario = localStorage.getItem('id_usuario');
         let Denuncia = {
             id_contrante : window.localStorage.getItem("id_usuario"),
             id_prestador : this.state.Anuncio.id_usuario,
-            descricao : this.state.Descricao
+            descricao : this.state.Descricao,
+            tokenAuth: tokenAuth,
+            id_usuario: id_usuario
         };
-        api.post("/fazerDenucnia"+this.state.Anuncio.id,Denuncia).then(res =>{
+        api.post("/fazerDenuncia/"+this.state.Anuncio.id,Denuncia).then(res =>{
             window.location.href = "http://localhost:3000/"
         }).catch(error =>{
             alert("error");

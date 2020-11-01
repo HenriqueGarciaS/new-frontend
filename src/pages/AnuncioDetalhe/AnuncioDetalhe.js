@@ -141,7 +141,7 @@ export default class AnuncioDetalhe extends Component{
         console.log(chat);
         api.post("/gravarChat",chat).then(res =>{
             console.log(res.data);
-            window.location.href = "http://localhost:3000/Chat/"+chat.nomeSala;
+            window.location.href = "http://localhost:3000/Chat/"+chat.nomeSala+"/"+this.state.Anuncio.id;
         })
     }
 

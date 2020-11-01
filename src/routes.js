@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from './services/api';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PaginaInicial from './pages/PaginaInicial/PaginaInicial';
 import PaginaLogada from './pages/PaginaLogada/PaginaLogada';
@@ -13,8 +14,10 @@ import VisualizarDenuncia from './pages/VisualizarDenuncia/VisualizarDenuncia';
 import AlterarDenuncia from './pages/AlterarDenuncia/AlterarDenuncia';
 import Chat from './pages/Chat/Chat';
 import Pesquisa from './pages/Pesquisa/Pesquisa';
+import CriarCompromisso from './pages/CriarCompromisso/CriarCompromisso';
 
 export default class Routes extends Component{
+
     render(){
     return (<BrowserRouter>
     <Switch>
@@ -29,8 +32,9 @@ export default class Routes extends Component{
       <Route path = "/AlterarAnuncio/:id_anuncio" component = {AlterarAnuncio} />
       <Route path = "/VisualizarDenuncia/:id_denuncia" component = {VisualizarDenuncia}/>
       <Route path = "/AlterarDenuncia/:id_denuncia" component = {AlterarDenuncia}/>
-      <Route path = "/Chat/:nomeSala" component = {Chat} />
+      <Route path = "/Chat/:nomeSala/:id_anuncio?" component = {Chat} />
       <Route path = "/Pesquisa/:categoria?/:titulo?" component = {Pesquisa} />
+      <Route pathc = "/CriarCompromisso/:id_anuncio" component = {CriarCompromisso} />
     </Switch>
     </BrowserRouter>
     )

@@ -35,6 +35,11 @@ export default class AlterarAnuncio extends Component{
         data.append("valor",parseFloat(this.state.anuncio.valor));
         data.append("categoria",this.state.anuncio.categoria);
         data.append("file",this.state.newFoto)
+        if(localStorage.getItem('tokenAuth'))
+        data.append("tokenAuth",localStorage.getItem('tokenAuth'));
+        else
+        data.append("tokenAuth",sessionStorage.getItem('tokenAuth'));
+        data.append("id_usuario",localStorage.getItem("id_usuario"));
         api.post("/updateAnuncio/"+this.state.anuncio.id,data).then(res =>{
             window.location.href = "http://localhost:3000/PaginaUsuario";
         }).catch(res=>{
