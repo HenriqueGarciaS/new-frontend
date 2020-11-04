@@ -34,7 +34,7 @@ export default class Routes extends Component{
       <Route path = "/AlterarDenuncia/:id_denuncia" component = {AlterarDenuncia}/>
       <Route path = "/Chat/:nomeSala/:id_anuncio?" component = {Chat} />
       <Route path = "/Pesquisa/:categoria?/:titulo?" component = {Pesquisa} />
-      <Route pathc = "/CriarCompromisso/:id_anuncio" component = {CriarCompromisso} />
+      <Route path = "/CriarCompromisso/:id_anuncio" component = {CriarCompromisso} />
     </Switch>
     </BrowserRouter>
     )
