@@ -19,7 +19,10 @@ export default class Pesquisa extends Component {
         titulo:"",
         avaliacao:0,
         preco:0
-        }
+        },
+        cidades:[],
+        cidadeChecked: "",
+        categoriaChecked: "",
 
     }
 
@@ -31,8 +34,10 @@ export default class Pesquisa extends Component {
          filtro.categoria = "";
 
          api.post('/anuncioFiltro',filtro).then(res => {
-             console.log(res.data);
              this.setState({anuncios:res.data});
+             api.get('/filtroCidades').then(res => {
+                 this.setState({cidades:res.data});
+             })
          }).catch(error => {
              console.log(error.data);
          })
@@ -49,7 +54,12 @@ export default class Pesquisa extends Component {
     radioChoose = (event) => {
         const filtro = {...this.state.filtro};
         filtro[event.target.name] = event.target.value;
+        if(event.target.name == "cidade")
+        this.setState({filtro,cidadeChecked:event.target.value});
+        else if(event.target.name == "categoria")
+        this.setState({filtro,categoriaChecked:event.target.value});
         this.setState({filtro});
+        console.log(this.state);
     }
 
     changeOutPut = (event) => {
@@ -78,10 +88,28 @@ export default class Pesquisa extends Component {
 
         api.post('/anuncioFiltros',cleanFiltro).then(res => {
             this.setState({anuncios:res.data});
+            this.setState({filtro:cleanFiltro});
+            document.getElementById(this.state.cidadeChecked).checked = false;
+            document.getElementById(this.state.categoriaChecked).checked = false;
+            document.getElementById('pesquisaNome').value = "";
         }).catch(error => {
             console.log(error.data);
         })
     }
+
+    renderRadioCidades = () => {  
+        return(   
+            this.state.cidades.map(cidade => {
+                return (
+                <div className = "colFiltro">
+                <input type = "radio" value = {cidade}  id = {cidade} name = "cidade" className = "check" onChange = {e => this.radioChoose(e)}/>
+                <label for = {cidade}>{cidade}</label>
+                </div>);
+            })
+        );
+        
+    }
+
 
     renderAnuncios = () =>{
         if(this.state.anuncios.length > 0)
@@ -121,14 +149,14 @@ export default class Pesquisa extends Component {
                 <div className = "rowFiltro">
                     <p className = "nameFiltro">Titulo do anuncio</p>
                     <div className = "colFiltro">
-                    <input type = "text" placeholder = "Ex: Professor Particular" id = "pesquisaNome" onChange = {e => this.radioChoose(e)}/>
+                    <input type = "text" placeholder = "Ex: Professor Particular" id = "pesquisaNome" name = "titulo" onChange = {e => this.radioChoose(e)}/>
                     </div>
                 </div>
                 <div className = "rowFiltro">
                     <p className = "nameFiltro">Categoria do Anuncio:</p>
                     <form>
                     <div className = "colFiltro">
-                    <input type = "radio" value = "faxina" id = "faxina"  name = "categoria" className = "check" onChange = {e => this.radioChoose(e)}/>
+                    <input type = "radio" value = "faxina" id = "faxina"  name = "categoria"  className = "check" onChange = {e => this.radioChoose(e)}/>
                     <label for = "faxina">Faxina</label>
                     </div>
                     <div className = "colFiltro">
@@ -151,14 +179,7 @@ export default class Pesquisa extends Component {
                 </div>
                 <div className = "rowFiltro">
                     <p className = "nameFiltro">Cidade do Anuncio:</p>
-                    <div className = "colFiltro">
-                        <input type = "radio" value = "campinas"  id = "campinas" name = "cidade" className = "check" onChange = {e => this.radioChoose(e)}/>
-                        <label for = "campinas">Campinas</label>
-                    </div>
-                    <div className = "colFiltro">
-                        <input type = "radio" value = "são paulo" id = "são paulo" name = "cidade" className = "check" onChange = {e => this.radioChoose(e)}/>
-                        <label for = "campinas">São Paulo</label>
-                    </div>
+                     {this.renderRadioCidades()}
                 </div>
                 <div class = "rowFiltro">
                     <p class = "nameFiltro">Availiação do Anuncio:</p>
