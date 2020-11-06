@@ -3,6 +3,7 @@ import logo from '../../images/logo.png';
 import './Autenticacao.css';
 import api from '../../services/api';
 import socket from '../../socketConfig.js';
+import hash from '../../services/hash';
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -27,7 +28,7 @@ export default class Autenticacao extends Component{
         event.preventDefault();
         let login = {
             email: this.state.login.email,
-            senha: this.hashPassWord(this.state.login.senha)
+            senha: hash(this.state.login.senha)
         }
         api.post("/loginUsuario",login).then(res=>{
             window.localStorage.setItem("id_usuario",res.data.id);
@@ -63,16 +64,6 @@ export default class Autenticacao extends Component{
 
     goToCadastrar = () =>{
         window.location.href = 'http://localhost:3000/Cadastrar';
-    }
-
-    hashPassWord = (str) => {
-        let hash = 0;
-        for(let i = 0 ; i < str.length; i++){
-            let charCode = str.charCodeAt(i);
-            hash += charCode;
-        }
-
-        return hash*70;
     }
 
     render(){

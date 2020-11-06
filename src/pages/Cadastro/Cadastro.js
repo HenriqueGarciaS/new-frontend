@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Header from '../../components/Header/Header';
 import api from '../../services/api';
 import socket from '../../socketConfig.js';
+import hash from '../../services/hash';
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -43,7 +44,7 @@ export default class Cadastro extends Component{
         data.append("telefone",this.state.usuario.fone)
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
-        data.append("senha",this.hashPassWord(this.state.usuario.senha));
+        data.append("senha",hash(this.state.usuario.senha));
         api.post("/Usuario",data).then(res =>{
             window.localStorage.setItem("id_usuario",res.data.id);
             window.localStorage.setItem("foto_usuario",res.data.foto);
@@ -131,17 +132,7 @@ export default class Cadastro extends Component{
         this.displayImg(event);
     }
 
-    hashPassWord = (str) => {
-        let hash = 0;
-        for(let i = 0 ; i < str.length; i++){
-            let charCode = str.charCodeAt(i);
-            hash += charCode;
-        }
-
-        return hash*70;
-    }
-
-
+    
     render(){
         return (<div>
             <Header/>

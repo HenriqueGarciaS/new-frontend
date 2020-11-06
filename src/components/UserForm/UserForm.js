@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import './UserForm.css';
 import user from '../../images/No-user.png';
 import api from '../../services/api';
+import hash from '../../services/hash';
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -39,7 +40,7 @@ export default class UserForm extends Component{
         data.append("telefone",this.state.usuario.telefone)
         data.append("cidade",this.state.usuario.cidade);
         data.append("email",this.state.usuario.email);
-        data.append("senha",this.hashPassWord(this.state.usuario.senha));
+        data.append("senha",hash(this.state.usuario.senha));
         if(localStorage.getItem('tokenAuth'))
         data.append("tokenAuth",localStorage.getItem('tokenAuth'))
         else
@@ -127,18 +128,7 @@ export default class UserForm extends Component{
         this.displayImg(event);
     }
 
-    hashPassWord = (str) => {
-        let hash = 0;
-        for(let i = 0 ; i < str.length; i++){
-            let charCode = str.charCodeAt(i);
-            hash += charCode;
-        }
-
-        return hash*70;
-    }
-
-
-
+   
     render(){
         let src
         if(localStorage.getItem("foto_usuario") == "")
