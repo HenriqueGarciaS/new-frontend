@@ -9,8 +9,8 @@ export default class Chat extends Component {
     state = {
         mensagem : "",
         isEmpty : true,
-        canAcessAgenda:false,
-        mensagens:[]
+        mensagens:[],
+        canNotAcessAgenda:true
     }
 
     
@@ -18,14 +18,15 @@ export default class Chat extends Component {
         let mensagem = event.target.value;
         if(mensagem != "")
         this.setState({mensagem:mensagem,isEmpty:false});
-        console.log(this.state);
+        
 
     }
 
     componentDidMount(){
         this.entrarSala();
         this.mensagemRecebida();
-        //this.canAcessAgenda();
+        this.accessAgenda();
+        
     }
 
     entrarSala = () => {
@@ -43,6 +44,15 @@ export default class Chat extends Component {
             this.carregarMensagens(mensagens);
         })
     }*/
+
+    accessAgenda =  () => {
+        const id_anuncio = this.props.match.params.id_anuncio
+        api.get('/AnuncioDetalhes/'+id_anuncio).then(res => {
+            let id = localStorage.getItem('id_usuario');
+            if(id == res.data.id_usuario)
+            this.setState({canNotAcessAgenda:false});
+        })
+    }
 
     carregarMensagens = (mensagens) => {
         this.setState({mensagens:mensagens});
@@ -79,14 +89,9 @@ export default class Chat extends Component {
         window.location.href = '/CriarCompromisso/'+this.props.match.params.id_anuncio;
     }
 
-    /*canAcessAgenda = () => {
-        api.get("/anuncioDetalhes/"+this.props.match.params.id_anuncio).then(res => {
-            if(localStorage.getItem('id_usuario') == res.data.id_usuario)
-            this.setState({canAcessAgenda:true});
-        }).catch(error => {
-            console.log(error.data);
-        });
-    }*/
+
+
+   
 
     renderChat(){
         return (
@@ -103,7 +108,7 @@ export default class Chat extends Component {
             </div>
             <input type = "text" id = "texto" className = "input" onChange = {e => this.updateField(e)}/>
             <button type = "submit" className = "btn" disabled = {this.state.isEmpty}>Enviar</button>
-            <button type = "button" className = "btn" disabled = {this.state.canAcessAgenda} onClickCapture = {this.goToCriarCompromisso}>Criar Compromisso</button>
+            {<button type = "button" className = "btn" disabled = {this.state.canNotAcessAgenda} onClickCapture = {this.goToCriarCompromisso}>Criar Compromisso</button>}
             </form>
         )
     }

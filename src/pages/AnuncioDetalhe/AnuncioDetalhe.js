@@ -135,6 +135,7 @@ export default class AnuncioDetalhe extends Component{
         let chat = {
             id_prestador : this.state.Anuncio.id_usuario,
             id_contrante : localStorage.getItem("id_usuario"),
+            id_anuncio: this.state.Anuncio.id,
             mensagens:"",
             nomeSala:this.state.Anuncio.titulo+"-"+localStorage.getItem("nome_usuario")
         }

@@ -22,7 +22,7 @@ export default class ChatArea extends Component {
         return this.state.chats.map(chats =>{
             return(
                 <div className = "ChatUser">
-                    <Link to = {"/Chat/"+chats.nome}>
+                    <Link to = {"/Chat/"+chats.nome+"/"+chats.id_anuncio}>
                         <img src = {noImage} className = "imagemChat" alt = ""/>
                         <small className = "tituloChat">{chats.nome}</small>
                     </Link>
