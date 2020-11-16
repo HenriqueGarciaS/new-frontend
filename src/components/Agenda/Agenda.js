@@ -26,6 +26,7 @@ export default class Agenda extends Component{
                 <tr>
                 <td className = "dadoColuna">{compromisso.nome_anuncio}</td>
                 <td className = "dadoColuna">{compromisso.data}</td>
+                <td className = "dadoColuna">{compromisso.horario}</td>
                 </tr>
                 ) 
             })
@@ -43,6 +44,7 @@ export default class Agenda extends Component{
                 <tr>
                     <th className = "nomeColuna">Nome do Serviço:</th>
                     <th className = "nomeColuna">Data:</th>
+                    <th className = "nomeColuna">Horario:</th>
                 </tr>
                 {this.renderData()}
             </table>

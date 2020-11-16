@@ -1,6 +1,10 @@
 import React,{Component} from 'react';
 import api from '../../services/api';
 import LoginHeader from '../../components/LoginHeader/LoginHeader';
+import './CriarCompromisso.css';
+
+
+
 
 export default class CriarComprimisso extends Component{
 
@@ -8,6 +12,8 @@ export default class CriarComprimisso extends Component{
     state = {
         Anuncio:{},
         data:"",
+        hora:"",
+        minuto:"",
         isEmpty:true
     }
 
@@ -24,8 +30,21 @@ export default class CriarComprimisso extends Component{
 
     updateField = (event) =>{
         this.setState({data:event.target.value});
-        if(this.state.data != "")
+        if(this.state.hora != "" && this.state.minuto != "" && this.state.data != "")
         this.setState({isEmpty:false});
+    }
+
+    updateTime = (event) => {
+        
+        if(event.target.name == "hora")
+        this.setState({hora:event.target.value});
+        else
+        this.setState({minuto:event.target.value});
+
+        if(this.state.hora != "" && this.state.minuto != "" && this.state.data != "")
+        this.setState({isEmpty:false});
+        
+
     }
 
     tratarData = (str) =>{
@@ -44,13 +63,18 @@ export default class CriarComprimisso extends Component{
             data:this.tratarData(this.state.data),
             nome_anuncio:this.state.Anuncio.titulo,
             id_usuario:localStorage.getItem('id_usuario'),
+            horario : this.state.hora+":"+this.state.minuto,
             tokenAuth:tokenAuth,
             id_anuncio:this.props.match.params.id_anuncio
         };
         console.log(data);
         api.post('/criaCompromisso',data).then(res => {
+            if(res.data != 'horario já em uso'){
             alert('Compromisso agendado com sucesso');
             window.location.href = '/';
+            }
+            else
+            alert('horario já em uso, escolha outro horario');
         }).catch(error =>{
             alert(error.data);
         })
@@ -73,6 +97,12 @@ export default class CriarComprimisso extends Component{
             <div className = "col">
                 <label for = "data" className = "labelForm">Escolha uma data para o compromisso:</label>
                 <input type = "date" name = "data" onChange = {e => this.updateField(e)}/>
+            </div>
+            <div className = "col">
+            <label for = "horario" className = "labelForm">Escolha um horario para o compromisso:</label>    
+            <input type = "number" className = "time" name = "hora" min = '0' max = '23' step = '1' onChange = {e => this.updateTime(e)}/>
+            <span>:</span>
+            <input type = "number" name = 'minuto' className = "time" min = '0' max = '59' step = '1'  onChange = {e => this.updateTime(e)}/>
             </div> 
         </div>
         <div className = "btn-area">
