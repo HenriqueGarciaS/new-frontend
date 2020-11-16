@@ -29,7 +29,8 @@ export default class AnuncioDetalhe extends Component{
             api.get('/usuario/'+this.state.Anuncio.id_usuario).then(res => {
                 this.setState({fotoUsuario:res.data.foto});
                 this.newHistorico();
-            })
+            });
+            api.get('/updateVisualizacao/'+id_anuncio);
         })
     }
 

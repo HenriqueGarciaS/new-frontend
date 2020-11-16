@@ -5,6 +5,7 @@ import DenunciasArea from '../../components/DenunciaArea/DenunciaArea';
 import DenunciaAreaPrestador from '../../components/DenunciaAreaPrestador/DenunciaAreaPrestador';
 import ChatArea from '../../components/ChatArea/ChatArea';
 import Agenda from '../../components/Agenda/Agenda';
+import Estatisticas from '../../components/EstatisticasArea/EstatisticasArea';
 import api from '../../services/api';
 import './PaginaUsuario.css';
 import user from '../../images/No-user.png';
@@ -33,7 +34,9 @@ export default class PaginaUsuario extends Component{
                return window.location.href = "http://localhost:3000";
             case 6:
                 return <Agenda/>
-            case 7:{
+            case 7:
+                return <Estatisticas/>
+            case 8:{
                 api.get('/logout/'+localStorage.getItem('id_usuario'));
                 sessionStorage.clear();
                 window.localStorage.clear();
@@ -71,7 +74,8 @@ export default class PaginaUsuario extends Component{
                     <button className = "btnComponent" value = "3" onClick = {e => this.chooseForm(e)}>Ver suas denuncias</button>
                     <button className = "btnComponent" value = "4" onClick = {e => this.chooseForm(e)}>Ver todos as conversas</button>
                     <button className = "btnComponent" value = "6" onClick = {e => this.chooseForm(e)}>Ver agenda</button>
-                    <button className = "btnComponent" value = "7" onClick = {e => this.chooseForm(e)}>Sair da Plataforma</button>
+                    <button className = "btnComponent" value = "7" onClick = {e => this.chooseForm(e)}>Ver estatisticas</button>
+                    <button className = "btnComponent" value = "8" onClick = {e => this.chooseForm(e)}>Sair da Plataforma</button>
                     <button className = "btnComponent" value = "5" onClick = {e => this.chooseForm(e)}>Voltar a Pagina Inicial</button>
                 </div>
             </div>
