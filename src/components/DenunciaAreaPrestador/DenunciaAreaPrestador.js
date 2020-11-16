@@ -28,7 +28,7 @@ export default class DenunciaArea extends Component {
             if(denuncias.imagem == "")
             src = Noimage;
             else
-            src = "http://localhost:3001"+denuncias.imagem;
+            src = "http://localhost:3001/"+denuncias.imagem;
             return(
                 <div className = "denunciaUser">
                     <Link to = {"/VisualizarDenuncia/"+denuncias.id}>

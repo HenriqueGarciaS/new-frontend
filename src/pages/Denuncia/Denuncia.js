@@ -66,14 +66,22 @@ export default class Denuncia extends Component{
         tokenAuth = sessionStorage.getItem('tokenAuth');
         console.log(tokenAuth);
         let id_usuario = localStorage.getItem('id_usuario');
+        const data = new FormData();
+        data.append('id_contrante',localStorage.getItem('id_usuario'));
+        data.append('id_prestador',this.state.Anuncio.id_usuario);
+        data.append('descricao',this.state.Descricao);
+        data.append('tokenAuth',tokenAuth);
+        data.append('id_usuario',id_usuario);
+        data.append('file',this.state.foto);
         let Denuncia = {
             id_contrante : window.localStorage.getItem("id_usuario"),
             id_prestador : this.state.Anuncio.id_usuario,
             descricao : this.state.Descricao,
+            file: this.state.foto,
             tokenAuth: tokenAuth,
             id_usuario: id_usuario
         };
-        api.post("/fazerDenuncia/"+this.state.Anuncio.id,Denuncia).then(res =>{
+        api.post("/fazerDenuncia/"+this.state.Anuncio.id,data).then(res =>{
             window.location.href = "http://localhost:3000/"
         }).catch(error =>{
             alert("error");

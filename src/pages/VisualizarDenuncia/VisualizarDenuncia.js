@@ -49,7 +49,7 @@ export default class VisualizarDenuncia extends Component{
         <div className = "row">
             <div className = "col">
             <label for = "foto" id = "fotoAnuncio" className = "labelForm">Foto da Denuncia:</label>
-            <img  id = "denuncia"/>
+            <img  src = {'http://localhost:3001/'+this.state.Denuncia.imagem} id = "denuncia"/>
             </div>
         </div>
         <div className = "btn-area">

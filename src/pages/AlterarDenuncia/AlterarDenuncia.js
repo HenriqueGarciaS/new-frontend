@@ -13,6 +13,7 @@ export default class AlterarDenuncia extends Component{
     state = {
         Denuncia:{},
         Anuncio:{},
+        foto:"",
         isEmpty:false
     }
 
@@ -64,14 +65,19 @@ export default class AlterarDenuncia extends Component{
 
     save = (event) =>{
         event.preventDefault();
-        let Denuncia = {...this.state.Denuncia};
+        let tokenAuth;
         if(localStorage.getItem('tokenAuth'))
-        Denuncia['tokenAuth'] = localStorage.getItem('tokenAuth');
+        tokenAuth = localStorage.getItem('tokenAuth');
         else
-        Denuncia['tokenAuth'] = sessionStorage.getItem('tokenAuth');
-        Denuncia['id_usuario'] = localStorage.getItem('id_usuario');
-        console.log(Denuncia);
-        api.post("/updateDenuncia/"+this.state.Denuncia.id,Denuncia).then(res =>{
+        tokenAuth = sessionStorage.getItem('tokenAuth');
+        let id_usuario = localStorage.getItem('id_usuario');
+
+        const data = new FormData();
+        data.append('id_usuario',id_usuario);
+        data.append('tokenAuth',tokenAuth);
+        data.append('descricao',this.state.Denuncia.descricao);
+        data.append('file',this.state.foto);
+        api.post("/updateDenuncia/"+this.state.Denuncia.id,data).then(res =>{
             alert("dados Atualizados");
             window.location.reload();
         }).catch(error =>{
