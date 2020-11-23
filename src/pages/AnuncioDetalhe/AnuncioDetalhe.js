@@ -5,6 +5,8 @@ import LoginHeader from '../../components/LoginHeader/LoginHeader';
 import NoLoginHeader from '../../components/NoLoginHeader/NoLoginHeader';
 import Noimage from '../../images/No-image.jpg';
 import user from '../../images/No-user.png';
+import blankStar from '../../images/BlankStar.png';
+import goldStar from '../../images/GoldStar.png';
 import placeholder from '../../images/placeholder.png';
 import api from '../../services/api';
 import socket from '../../socketConfig.js';
@@ -53,9 +55,9 @@ export default class AnuncioDetalhe extends Component{
         else{
         let nota = event.target.value;
         for(let i = 1 ; i <= nota; i++)
-        document.getElementById(i).style.backgroundColor = "yellow";
+        document.getElementById(i).src = goldStar;
         for(let i = 5; i > nota; i--)
-        document.getElementById(i).style.backgroundColor = "gray";
+        document.getElementById(i).src = blankStar;
 
             let data = {
                 nota:parseInt(nota)
@@ -78,23 +80,23 @@ export default class AnuncioDetalhe extends Component{
         <br/><br/>
         <label>
         <input type = "radio" name = "escolha" value = "1" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
-        <img src = {placeholder} className = "avaliacao" id = "1"/>
+        <img src = {blankStar} className = "avaliacao" id = "1"/>
         </label>
         <label>
         <input type = "radio" name = "escolha" value = "2" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
-        <img src = {placeholder} className = "avaliacao" id = "2"/>
+        <img src = {blankStar} className = "avaliacao" id = "2"/>
         </label>
         <label>
         <input type = "radio" name = "escolha" value = "3" className = "radio" style = {{display:"none"}}   onClick = {e => this.avaliacao(e)}/>
-        <img src = {placeholder} className = "avaliacao" id = "3"/>
+        <img src = {blankStar} className = "avaliacao" id = "3"/>
         </label>
         <label>
         <input type = "radio" name = "escolha" value = "4" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
-        <img src = {placeholder} className = "avaliacao" id = "4"/>
+        <img src = {blankStar} className = "avaliacao" id = "4"/>
         </label>
         <label>
         <input type = "radio" name = "escolha" value = "5" className = "radio" style = {{display:"none"}} onClick = {e => this.avaliacao(e)}/>
-        <img src = {placeholder} className = "avaliacao" id = "5"/>
+        <img src = {blankStar} className = "avaliacao" id = "5"/>
         </label>
                 </div>);
     }

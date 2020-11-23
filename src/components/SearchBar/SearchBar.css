@@ -10,7 +10,7 @@
 
 .categoria{
     display:inline-block;
-    margin-left:5%;
+    margin-left:10%;
     margin-right:5%;
 
 }
@@ -49,5 +49,6 @@
     width:30px;
     background-color: white;
     position:absolute;
+    cursor: pointer;
 }
 
