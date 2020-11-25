@@ -19,6 +19,7 @@
 }
 
 #btn{
+    border-radius:8px;
     height:75px;
     width: 250px;
     font-size:18px;

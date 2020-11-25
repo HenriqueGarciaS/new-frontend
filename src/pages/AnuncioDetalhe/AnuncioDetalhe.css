@@ -16,6 +16,7 @@ font-weight: bold;
 }
 
 .btn{
+    border-radius: 8px;
     cursor: pointer;
     display:inline-block;
     margin-left:0px;

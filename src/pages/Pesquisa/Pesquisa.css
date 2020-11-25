@@ -24,6 +24,7 @@ margin-top: 15px;
 }
 
 .btnFiltro{
+    border-radius:8px;
     cursor: pointer;
     display:inline-block;
     margin-top: 8%;
