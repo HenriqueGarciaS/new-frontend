@@ -18,6 +18,7 @@ export default class AnuncioDetalhe extends Component{
 
     state = {
         Anuncio:{},
+        Denuncias:[],
         fotoUsuario:"",
         classificacao:"",
     }
@@ -33,6 +34,9 @@ export default class AnuncioDetalhe extends Component{
                 this.newHistorico();
             });
             api.get('/updateVisualizacao/'+id_anuncio);
+            api.get('/denuncias/'+id_anuncio).then(res=>{
+                this.setState({Denuncias:res.data});
+            })
         })
     }
 
@@ -156,6 +160,24 @@ export default class AnuncioDetalhe extends Component{
         return false;
     }
 
+    renderDenuncias = () => {
+        return (
+            <div id = "denuncias">
+            <p>Denuncias</p>
+            {this.state.Denuncias.map(Denuncia => {
+                return (
+                    <div className = "denunciaText">
+                        <img src = {user} className = "fotoDenunciaUser"/>
+                        <p className = "texto">{Denuncia.descricao}</p>
+                    </div>
+                )
+            })}
+
+            </div>
+        )
+
+    }
+
     render(){
        return(
             <div>
@@ -190,6 +212,7 @@ export default class AnuncioDetalhe extends Component{
                     <small id = "nomeDoUsuario">{this.state.Anuncio.usuario}</small>
                 </div>
             </div>
+                {this.renderDenuncias()}
             </div>
             </div>
        );
