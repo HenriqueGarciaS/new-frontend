@@ -216,7 +216,7 @@ export default class Cadastro extends Component{
                     </div>
                     <div className = "btn-area">
                         <button type = "submit" id="btn" disabled = {this.state.isEmpty || !this.state.passwordValid || !this.state.emailValid || !this.state.telephoneValid}>Cadastrar</button>
-                        <a href = "http://localhost:3000/Entrar" id = "link">Já tem conta?</a>
+                        <a href = "http://localhost:3000/Entrar" id = "Conta">Já tem conta?</a>
                     </div>
                     </form>
                 </div>

@@ -15,6 +15,10 @@ import AlterarDenuncia from './pages/AlterarDenuncia/AlterarDenuncia';
 import Chat from './pages/Chat/Chat';
 import Pesquisa from './pages/Pesquisa/Pesquisa';
 import CriarCompromisso from './pages/CriarCompromisso/CriarCompromisso';
+import Home from './pages/Home/Home';
+import About from './pages/Home/About';
+import contact from './pages/Home/Contact'
+
 
 export default class Routes extends Component{
 
@@ -22,6 +26,7 @@ export default class Routes extends Component{
     return (<BrowserRouter>
     <Switch>
       <Route exact path = "/" component = {PaginaInicial}/>
+      <Route path = '/PaginaInicial' component = {Home}/>
       <Route path = "/PaginaLogada" component = {PaginaLogada}/>
       <Route path = "/Entrar" component = {Autenticacao}/>
       <Route path = "/Cadastrar" component = {Cadastro}/>
@@ -35,6 +40,8 @@ export default class Routes extends Component{
       <Route path = "/Chat/:nomeSala/:id_anuncio?" component = {Chat} />
       <Route path = "/Pesquisa/:categoria?/:titulo?" component = {Pesquisa} />
       <Route path = "/CriarCompromisso/:id_anuncio" component = {CriarCompromisso} />
+      <Route path = '/Contato' component = {contact}/>
+      <Route path = '/Sobre' component = {About}/>
     </Switch>
     </BrowserRouter>
     )

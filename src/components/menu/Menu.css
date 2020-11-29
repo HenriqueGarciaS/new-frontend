@@ -1,0 +1,23 @@
+.app-menu__list{
+    display: flex;
+    /*border: 1px solid black;*/
+}
+
+.app-menu__item{
+    list-style: none;
+    /*border: 1px solid black;*/
+}
+
+.app-menu__link{
+    color: white;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-right: 1rem;
+    text-decoration: none;
+    /*border: 1px solid black;*/
+}
+
+.app-menu__link:hover{
+    text-decoration: underline;
+    /*border: 1px solid black;*/
+}

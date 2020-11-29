@@ -1,0 +1,78 @@
+.container{
+    background: #F6F6F3;
+}
+
+.container2{
+    display: flex;
+    flex-direction: grid;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    margin: auto;
+    padding: 10px 0px;
+    outline: none;
+    flex: 1;
+    min-width: 80px;
+}
+
+.title{
+    display: flex;
+    /*border: 1px solid black;*/
+    margin: 31vh 10vh 10vh 20vh;
+    padding: auto;
+}
+
+.sub-title{
+    
+    width: 80%;
+    height: 30%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 17px;
+    margin-top: 35px;
+    padding: 10px;
+    /*border: 1px solid black;*/
+}
+
+
+.placeHolder{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    margin-left: 5%;
+    margin-right: 6.5%;
+}
+
+.lead{
+    display: flex;
+    font-size: 20px;
+    /*margin: 10px;*/
+    margin-top: 35px;
+    /*padding: 10px;*/
+    
+}
+
+.sub-container{
+    width: 100%;
+    height: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    margin: 10px;
+    padding: 10px;
+    
+    border-radius: 3vh;
+    order: 5;
+    display: flex;    
+    flex-direction: row;    
+}
+
+.subtitle{
+    font-size: 20px;
+    display: flex;
+    flex-direction: inherit;
+    margin-left: 30px;
+    margin-right: 15px;
+    width: 30%;
+    height: 29%;
+    margin-right: 9px;
+    
+}
